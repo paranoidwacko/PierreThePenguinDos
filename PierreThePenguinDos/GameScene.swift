@@ -9,19 +9,32 @@
 import SpriteKit
 
 class GameScene: SKScene {
+    let cam = SKCameraNode()
+    let bee = SKSpriteNode()
+    
     override func didMove(to view: SKView) {
         self.anchorPoint = .zero
         self.backgroundColor = UIColor(red: 0.4, green: 0.6, blue: 0.95, alpha: 1.0)
         
-        let bee = SKSpriteNode()
-        bee.size = CGSize(width: 28, height: 24)
-        bee.position = CGPoint(x: 250, y: 250)
-        self.addChild(bee)
+        self.camera = self.cam
+        self.addTheFlyingBee()
+    }
+    
+    override func didSimulatePhysics() {
+        if let myCam = self.camera {
+            myCam.position = self.bee.position
+        }
+    }
+        
+    func addTheFlyingBee() {
+        self.bee.position = CGPoint(x: 250, y: 250)
+        self.bee.size = CGSize(width: 28, height: 24)
+        self.addChild(self.bee)
         
         let beeAtlas = SKTextureAtlas(named: "Enemies")
         let beeFrames:[SKTexture] = [
-        beeAtlas.textureNamed("bee"),
-        beeAtlas.textureNamed("bee-fly")]
+            beeAtlas.textureNamed("bee"),
+            beeAtlas.textureNamed("bee-fly")]
         let flyAction = SKAction.animate(with: beeFrames, timePerFrame: 0.14)
         let beeAction = SKAction.repeatForever(flyAction)
         bee.run(beeAction)
