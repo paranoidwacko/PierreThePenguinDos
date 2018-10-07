@@ -7,11 +7,13 @@
 //
 
 import SpriteKit
+import CoreMotion
 
 class GameScene: SKScene {
     let cam = SKCameraNode()
     let ground = Ground()
     let player = Player()
+    let motionManager = CMMotionManager()
     
     override func didMove(to view: SKView) {
         self.anchorPoint = .zero
@@ -32,6 +34,8 @@ class GameScene: SKScene {
         
         self.player.position = CGPoint(x: 150, y: 250)
         self.addChild(self.player)
+        
+        self.motionManager.startAccelerometerUpdates()
     }
     
     override func didSimulatePhysics() {
@@ -42,5 +46,26 @@ class GameScene: SKScene {
     
     override func update(_ currentTime: TimeInterval) {
         player.update()
+        
+        if let accelData = self.motionManager.accelerometerData {
+            var forceAmount: CGFloat
+            var movement = CGVector()
+            
+            switch UIApplication.shared.statusBarOrientation {
+            case .landscapeLeft:
+                forceAmount = 20000
+            case .landscapeRight:
+                forceAmount = -20000
+            default:
+                forceAmount = 0
+            }
+            
+            if accelData.acceleration.y > 0.15 {
+                movement.dx = forceAmount
+            } else if accelData.acceleration.y < -0.15 {
+                movement.dx = -forceAmount
+            }
+            player.physicsBody?.applyForce(movement)
+        }
     }
 }
