@@ -25,24 +25,22 @@ class GameScene: SKScene {
         bee3.position = CGPoint(x: 200, y: 325)
         self.addChild(bee3)
         
-        self.ground.position = CGPoint(x: -self.size.width * 2, y: 150)
+        self.ground.position = CGPoint(x: -self.size.width * 2, y: 30)
         self.ground.size = CGSize(width: self.size.width * 6, height: 0)
         ground.createChildren()
         self.addChild(self.ground)
         
         self.player.position = CGPoint(x: 150, y: 250)
         self.addChild(self.player)
-        
-        bee2.physicsBody?.mass = 0.2
-        bee2.physicsBody?.applyImpulse(CGVector(dx: -25, dy: 0))
-//        bee2.physicsBody?.applyForce(CGVector(dx: -250, dy: 0))
-//        bee2.physicsBody?.velocity = CGVector(dx: -125, dy: 0)
-//        bee2.physicsBody?.angularVelocity = 50
     }
     
     override func didSimulatePhysics() {
         if let myCam = self.camera {
             myCam.position = self.player.position
         }
+    }
+    
+    override func update(_ currentTime: TimeInterval) {
+        player.update()
     }
 }
