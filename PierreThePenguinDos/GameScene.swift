@@ -32,6 +32,12 @@ class GameScene: SKScene {
         
         self.player.position = CGPoint(x: 150, y: 250)
         self.addChild(self.player)
+        
+        bee2.physicsBody?.mass = 0.2
+        bee2.physicsBody?.applyImpulse(CGVector(dx: -25, dy: 0))
+//        bee2.physicsBody?.applyForce(CGVector(dx: -250, dy: 0))
+//        bee2.physicsBody?.velocity = CGVector(dx: -125, dy: 0)
+//        bee2.physicsBody?.angularVelocity = 50
     }
     
     override func didSimulatePhysics() {
