@@ -13,7 +13,10 @@ class GameScene: SKScene {
     let cam = SKCameraNode()
     let ground = Ground()
     let player = Player()
-    let motionManager = CMMotionManager()
+//    let motionManager = CMMotionManager()
+    var screenCenterY = CGFloat()
+    let initialPlayerPostion = CGPoint(x: 150, y: 250)
+    var playerProgress = CGFloat()
     
     override func didMove(to view: SKView) {
         self.anchorPoint = .zero
@@ -32,40 +35,79 @@ class GameScene: SKScene {
         ground.createChildren()
         self.addChild(self.ground)
         
-        self.player.position = CGPoint(x: 150, y: 250)
+        self.player.position = self.initialPlayerPostion
         self.addChild(self.player)
         
-        self.motionManager.startAccelerometerUpdates()
+        self.physicsWorld.gravity = CGVector(dx: 0, dy: -5)
+        
+//        self.motionManager.startAccelerometerUpdates()
+        
+        self.screenCenterY = self.size.height / 2
     }
     
     override func didSimulatePhysics() {
-        if let myCam = self.camera {
-            myCam.position = self.player.position
+        var cameraYPos = self.screenCenterY
+        self.cam.yScale = 1
+        self.cam.xScale = 1
+        
+        if (player.position.y > screenCenterY) {
+            cameraYPos = player.position.y
+            let percentOfMaxHeight = (player.position.y - screenCenterY) / (player.maxHeight - screenCenterY)
+            let newScale = 1 + percentOfMaxHeight
+            cam.yScale = newScale
+            cam.xScale = newScale
         }
+        
+        if let myCam = self.camera {
+            myCam.position = CGPoint(x: player.position.x, y: cameraYPos)
+        }
+        
+        self.playerProgress = player.position.x - initialPlayerPostion.x
+        
+        self.ground.checkForReposition(playerProgress: self.playerProgress)
     }
     
     override func update(_ currentTime: TimeInterval) {
         player.update()
         
-        if let accelData = self.motionManager.accelerometerData {
-            var forceAmount: CGFloat
-            var movement = CGVector()
-            
-            switch UIApplication.shared.statusBarOrientation {
-            case .landscapeLeft:
-                forceAmount = 20000
-            case .landscapeRight:
-                forceAmount = -20000
-            default:
-                forceAmount = 0
-            }
-            
-            if accelData.acceleration.y > 0.15 {
-                movement.dx = forceAmount
-            } else if accelData.acceleration.y < -0.15 {
-                movement.dx = -forceAmount
-            }
-            player.physicsBody?.applyForce(movement)
-        }
+//        if let accelData = self.motionManager.accelerometerData {
+//            var forceAmount: CGFloat
+//            var movement = CGVector()
+//
+//            switch UIApplication.shared.statusBarOrientation {
+//            case .landscapeLeft:
+//                forceAmount = 20000
+//            case .landscapeRight:
+//                forceAmount = -20000
+//            default:
+//                forceAmount = 0
+//            }
+//
+//            if accelData.acceleration.y > 0.15 {
+//                movement.dx = forceAmount
+//            } else if accelData.acceleration.y < -0.15 {
+//                movement.dx = -forceAmount
+//            }
+//            player.physicsBody?.applyForce(movement)
+//        }
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.player.startFlapping()
+//        for touch in touches {
+//            let location = touch.location(in: self)
+//            let nodeTouched = atPoint(location)
+//            if let gameSprite = nodeTouched as? GameSprite {
+//                gameSprite.onTap()
+//            }
+//        }
+    }
+    
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.player.stopFlapping()
+    }
+    
+    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.player.stopFlapping()
     }
 }

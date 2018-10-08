@@ -12,6 +12,8 @@ import SpriteKit
 class Ground: SKSpriteNode, GameSprite {
     var textureAtlas: SKTextureAtlas = SKTextureAtlas(named: "Environment")
     var initialSize: CGSize = CGSize.zero
+    var jumpWidth = CGFloat()
+    var jumpCount = CGFloat(1)
     
     func createChildren() {
         self.anchorPoint = CGPoint(x: 0, y: 1)
@@ -29,8 +31,19 @@ class Ground: SKSpriteNode, GameSprite {
         let pointTopLeft = CGPoint(x: 0, y: 0)
         let pointTopRight = CGPoint(x: size.width, y: 0)
         self.physicsBody = SKPhysicsBody(edgeFrom: pointTopLeft, to: pointTopRight)
+        
+        self.jumpWidth = tileSize.width * floor(tileCount / 3)
     }
     
     func onTap() {}
+    
+    func checkForReposition(playerProgress: CGFloat) {
+        let groundJumpPosition = jumpWidth * jumpCount
+        
+        if playerProgress >= groundJumpPosition {
+            self.position.x += jumpWidth
+            jumpCount += 1
+        }
+    }
     
 }
