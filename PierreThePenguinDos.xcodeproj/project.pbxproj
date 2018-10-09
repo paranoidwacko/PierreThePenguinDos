@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1F4D43B4216D2BEB00BF4929 /* Star.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4D43B3216D2BEB00BF4929 /* Star.swift */; };
+		1F4D43B6216D323900BF4929 /* MadFly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4D43B5216D323900BF4929 /* MadFly.swift */; };
+		1F4D43B8216D351A00BF4929 /* Bats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4D43B7216D351A00BF4929 /* Bats.swift */; };
+		1F4D43BA216D36A800BF4929 /* Blade.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4D43B9216D36A800BF4929 /* Blade.swift */; };
+		1F4D43BC216D38DB00BF4929 /* Coin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4D43BB216D38DB00BF4929 /* Coin.swift */; };
 		84765037216A99BC00B205AB /* GameSprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84765036216A99BC00B205AB /* GameSprite.swift */; };
 		84765039216A9AD400B205AB /* Bee.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84765038216A9AD400B205AB /* Bee.swift */; };
 		8476503B216A9CCA00B205AB /* Ground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8476503A216A9CCA00B205AB /* Ground.swift */; };
@@ -22,6 +27,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1F4D43B3216D2BEB00BF4929 /* Star.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Star.swift; sourceTree = "<group>"; };
+		1F4D43B5216D323900BF4929 /* MadFly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MadFly.swift; sourceTree = "<group>"; };
+		1F4D43B7216D351A00BF4929 /* Bats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bats.swift; sourceTree = "<group>"; };
+		1F4D43B9216D36A800BF4929 /* Blade.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Blade.swift; sourceTree = "<group>"; };
+		1F4D43BB216D38DB00BF4929 /* Coin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coin.swift; sourceTree = "<group>"; };
 		84765036216A99BC00B205AB /* GameSprite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSprite.swift; sourceTree = "<group>"; };
 		84765038216A9AD400B205AB /* Bee.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bee.swift; sourceTree = "<group>"; };
 		8476503A216A9CCA00B205AB /* Ground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ground.swift; sourceTree = "<group>"; };
@@ -68,19 +78,24 @@
 		84F05C5D21475BBE004AF466 /* PierreThePenguinDos */ = {
 			isa = PBXGroup;
 			children = (
-				84F05C5E21475BBE004AF466 /* AppDelegate.swift */,
-				84F05C6021475BBE004AF466 /* GameScene.sks */,
+				84F05C7021475BBE004AF466 /* Info.plist */,
 				84F05C6221475BBE004AF466 /* Actions.sks */,
+				84F05C6021475BBE004AF466 /* GameScene.sks */,
+				84F05C5E21475BBE004AF466 /* AppDelegate.swift */,
+				1F4D43B7216D351A00BF4929 /* Bats.swift */,
+				84765038216A9AD400B205AB /* Bee.swift */,
+				1F4D43B9216D36A800BF4929 /* Blade.swift */,
+				1F4D43BB216D38DB00BF4929 /* Coin.swift */,
 				84F05C6421475BBE004AF466 /* GameScene.swift */,
+				84765036216A99BC00B205AB /* GameSprite.swift */,
 				84F05C6621475BBE004AF466 /* GameViewController.swift */,
-				84F05C6821475BBE004AF466 /* Main.storyboard */,
+				8476503A216A9CCA00B205AB /* Ground.swift */,
+				1F4D43B5216D323900BF4929 /* MadFly.swift */,
+				8476503C216AA12B00B205AB /* Player.swift */,
+				1F4D43B3216D2BEB00BF4929 /* Star.swift */,
 				84F05C6B21475BBE004AF466 /* Assets.xcassets */,
 				84F05C6D21475BBE004AF466 /* LaunchScreen.storyboard */,
-				84F05C7021475BBE004AF466 /* Info.plist */,
-				84765036216A99BC00B205AB /* GameSprite.swift */,
-				84765038216A9AD400B205AB /* Bee.swift */,
-				8476503A216A9CCA00B205AB /* Ground.swift */,
-				8476503C216AA12B00B205AB /* Player.swift */,
+				84F05C6821475BBE004AF466 /* Main.storyboard */,
 			);
 			path = PierreThePenguinDos;
 			sourceTree = "<group>";
@@ -165,7 +180,12 @@
 				84F05C6521475BBE004AF466 /* GameScene.swift in Sources */,
 				8476503D216AA12B00B205AB /* Player.swift in Sources */,
 				84F05C6721475BBE004AF466 /* GameViewController.swift in Sources */,
+				1F4D43BC216D38DB00BF4929 /* Coin.swift in Sources */,
 				84F05C5F21475BBE004AF466 /* AppDelegate.swift in Sources */,
+				1F4D43B8216D351A00BF4929 /* Bats.swift in Sources */,
+				1F4D43BA216D36A800BF4929 /* Blade.swift in Sources */,
+				1F4D43B6216D323900BF4929 /* MadFly.swift in Sources */,
+				1F4D43B4216D2BEB00BF4929 /* Star.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
