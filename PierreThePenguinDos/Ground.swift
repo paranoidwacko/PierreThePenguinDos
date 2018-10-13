@@ -33,6 +33,8 @@ class Ground: SKSpriteNode, GameSprite {
         self.physicsBody = SKPhysicsBody(edgeFrom: pointTopLeft, to: pointTopRight)
         
         self.jumpWidth = tileSize.width * floor(tileCount / 3)
+        
+        self.physicsBody?.categoryBitMask = PhysicsCategory.ground.rawValue
     }
     
     func onTap() {}

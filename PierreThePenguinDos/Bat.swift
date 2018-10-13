@@ -20,6 +20,9 @@ class Bat: SKSpriteNode, GameSprite {
         self.physicsBody?.affectedByGravity = false
         self.createAnimations()
         self.run(self.flyAnimation)
+        
+        self.physicsBody?.categoryBitMask = PhysicsCategory.enemy.rawValue
+        self.physicsBody?.collisionBitMask = ~PhysicsCategory.damagedPenguin.rawValue
     }
     
     func createAnimations() {

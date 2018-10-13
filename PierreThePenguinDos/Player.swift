@@ -28,6 +28,10 @@ class Player: SKSpriteNode, GameSprite {
         self.physicsBody?.linearDamping = 0.9
         self.physicsBody?.mass = 30
         self.physicsBody?.allowsRotation = false
+        
+        self.physicsBody?.categoryBitMask = PhysicsCategory.penguin.rawValue
+        self.physicsBody?.contactTestBitMask = PhysicsCategory.enemy.rawValue | PhysicsCategory.ground.rawValue | PhysicsCategory.powerup.rawValue | PhysicsCategory.coin.rawValue
+        self.physicsBody?.collisionBitMask = PhysicsCategory.ground.rawValue
     }
     
     func createAnimations() {
