@@ -37,20 +37,6 @@ class GameViewController: UIViewController {
         
         authenticateLocalPlayer(menuScene: menuScene)
         
-//        if let view = self.view as? SKView {
-//            // Load the SKScene form 'GameScene.sks'
-//            if let scene = SKScene(fileNamed: "GameScene") {
-//                // Set the scale mode fit the window:
-//                scene.scaleMode = .aspectFill
-//                // Size our scene to fit the view exactly:
-//                scene.size = view.bounds.size
-//                // Show the new scene:
-//                view.presentScene(scene)
-//            }
-//            view.ignoresSiblingOrder = true
-//            view.showsFPS = true
-//            view.showsNodeCount = true
-//        }
     }
     
     override var shouldAutorotate: Bool {

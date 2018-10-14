@@ -108,6 +108,37 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		84B67D072173DAFA00442DD4 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				84F05C6B21475BBE004AF466 /* Assets.xcassets */,
+				844CAF672172F92A0096894D /* Sound */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		84B67D082173DD3D00442DD4 /* GameObject */ = {
+			isa = PBXGroup;
+			children = (
+				844CAF5D2172CE860096894D /* Crate.swift */,
+				1F4D43BB216D38DB00BF4929 /* Coin.swift */,
+				1F4D43B9216D36A800BF4929 /* Blade.swift */,
+				84765038216A9AD400B205AB /* Bee.swift */,
+				1F4D43B7216D351A00BF4929 /* Bat.swift */,
+			);
+			path = GameObject;
+			sourceTree = "<group>";
+		};
+		84B67D092173DD7F00442DD4 /* Particle */ = {
+			isa = PBXGroup;
+			children = (
+				844CAF612172D0570096894D /* CrateExplosion.sks */,
+				844CAF5F2172CFE10096894D /* HeartExplosion.sks */,
+				844CAF5B2172C46E0096894D /* PierrePath.sks */,
+			);
+			path = Particle;
+			sourceTree = "<group>";
+		};
 		84F05C5221475BBE004AF466 = {
 			isa = PBXGroup;
 			children = (
@@ -128,36 +159,29 @@
 		84F05C5D21475BBE004AF466 /* PierreThePenguinDos */ = {
 			isa = PBXGroup;
 			children = (
-				844CAF672172F92A0096894D /* Sound */,
-				1F4D43BE216EF0A200BF4929 /* Encounters */,
+				84B67D092173DD7F00442DD4 /* Particle */,
+				84B67D082173DD3D00442DD4 /* GameObject */,
 				84F05C7021475BBE004AF466 /* Info.plist */,
 				84F05C6221475BBE004AF466 /* Actions.sks */,
 				84F05C6021475BBE004AF466 /* GameScene.sks */,
 				84F05C5E21475BBE004AF466 /* AppDelegate.swift */,
-				1F4D43B7216D351A00BF4929 /* Bat.swift */,
-				84765038216A9AD400B205AB /* Bee.swift */,
-				1F4D43B9216D36A800BF4929 /* Blade.swift */,
-				1F4D43BB216D38DB00BF4929 /* Coin.swift */,
+				844CAF592172C0EF0096894D /* Background.swift */,
+				1F4D43C1216EF3B600BF4929 /* EncounterManager.swift */,
 				84F05C6421475BBE004AF466 /* GameScene.swift */,
 				84765036216A99BC00B205AB /* GameSprite.swift */,
 				84F05C6621475BBE004AF466 /* GameViewController.swift */,
 				8476503A216A9CCA00B205AB /* Ground.swift */,
+				844CAF572172BC4E0096894D /* HUD.swift */,
 				1F4D43B5216D323900BF4929 /* MadFly.swift */,
+				844CAF652172F2310096894D /* MenuScene.swift */,
+				844CAF632172D0D90096894D /* ParticlePool.swift */,
+				844CAF552172A3430096894D /* PhysicsCategory.swift */,
 				8476503C216AA12B00B205AB /* Player.swift */,
 				1F4D43B3216D2BEB00BF4929 /* Star.swift */,
-				84F05C6B21475BBE004AF466 /* Assets.xcassets */,
+				1F4D43BE216EF0A200BF4929 /* Encounters */,
 				84F05C6D21475BBE004AF466 /* LaunchScreen.storyboard */,
 				84F05C6821475BBE004AF466 /* Main.storyboard */,
-				1F4D43C1216EF3B600BF4929 /* EncounterManager.swift */,
-				844CAF552172A3430096894D /* PhysicsCategory.swift */,
-				844CAF572172BC4E0096894D /* HUD.swift */,
-				844CAF592172C0EF0096894D /* Background.swift */,
-				844CAF5B2172C46E0096894D /* PierrePath.sks */,
-				844CAF5D2172CE860096894D /* Crate.swift */,
-				844CAF5F2172CFE10096894D /* HeartExplosion.sks */,
-				844CAF612172D0570096894D /* CrateExplosion.sks */,
-				844CAF632172D0D90096894D /* ParticlePool.swift */,
-				844CAF652172F2310096894D /* MenuScene.swift */,
+				84B67D072173DAFA00442DD4 /* Resources */,
 			);
 			path = PierreThePenguinDos;
 			sourceTree = "<group>";
