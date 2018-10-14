@@ -7,14 +7,12 @@
 //
 
 import SpriteKit
-import CoreMotion
 import GameKit
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
     let cam = SKCameraNode()
     let ground = Ground()
     let player = Player()
-//    let motionManager = CMMotionManager()
     var screenCenterY = CGFloat()
     let initialPlayerPostion = CGPoint(x: 150, y: 250)
     var playerProgress = CGFloat()
@@ -42,8 +40,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         self.physicsWorld.gravity = CGVector(dx: 0, dy: -5)
         
-//        self.motionManager.startAccelerometerUpdates()
-        
         self.screenCenterY = self.size.height / 2
         
         self.encounterManager.addEncountersToScene(gameScene: self)
@@ -61,9 +57,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         for _ in 0..<3 {
             backgrounds.append(Background())
         }
-        backgrounds[0].spawn(parentNode: self, imageName: "background-front", zPosition: -5, movementMultiplier: 0.75)
-        backgrounds[1].spawn(parentNode: self, imageName: "background-middle", zPosition: -10, movementMultiplier: 0.5)
-        backgrounds[2].spawn(parentNode: self, imageName: "background-back", zPosition: -15, movementMultiplier: 0.2)
+        backgrounds[0].spawn(parentNode: self, imageName: TextureName.BackgroundFront.rawValue, zPosition: -5, movementMultiplier: 0.75)
+        backgrounds[1].spawn(parentNode: self, imageName: TextureName.BackgroundMiddle.rawValue, zPosition: -10, movementMultiplier: 0.5)
+        backgrounds[2].spawn(parentNode: self, imageName: TextureName.BackgroundBack.rawValue, zPosition: -15, movementMultiplier: 0.2)
         
         if let dotEmitter = SKEmitterNode(fileNamed: "PierrePath") {
             player.zPosition = 10

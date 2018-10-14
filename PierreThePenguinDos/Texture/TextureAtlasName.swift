@@ -9,9 +9,9 @@
 import Foundation
 
 enum TextureAtlasName: String {
-    case Environment    = "Environment"
-    case Enemies        = "Enemies"
-    case Pierre         = "Pierre"
     case Background     = "Backgrounds"
+    case Enemies        = "Enemies"
+    case Environment    = "Environment"
     case HUD            = "HUD"
+    case Pierre         = "Pierre"
 }
