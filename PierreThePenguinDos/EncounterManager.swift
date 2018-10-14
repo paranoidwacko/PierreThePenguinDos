@@ -63,6 +63,9 @@ class EncounterManager {
                 spriteNode.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
                 spriteNode.physicsBody?.angularVelocity = 0
                 spriteNode.zRotation = 0
+                if let crateTest = spriteNode as? Crate {
+                    crateTest.reset()
+                }
                 if let initialPositionVal = spriteNode.userData?.value(forKey: "initialPosition") as? NSValue {
                     spriteNode.position = initialPositionVal.cgPointValue
                 }

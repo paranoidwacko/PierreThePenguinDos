@@ -18,6 +18,7 @@ class Player: SKSpriteNode, GameSprite {
     let maxFlappingForce: CGFloat = 57000
     let maxHeight: CGFloat = 1000
     var health: Int = 3
+    let maxHealth = 3
     var invulnerable = false
     var damaged = false
     var damageAnimation = SKAction()
@@ -36,7 +37,7 @@ class Player: SKSpriteNode, GameSprite {
         self.physicsBody?.allowsRotation = false
         
         self.physicsBody?.categoryBitMask = PhysicsCategory.penguin.rawValue
-        self.physicsBody?.contactTestBitMask = PhysicsCategory.enemy.rawValue | PhysicsCategory.ground.rawValue | PhysicsCategory.powerup.rawValue | PhysicsCategory.coin.rawValue
+        self.physicsBody?.contactTestBitMask = PhysicsCategory.enemy.rawValue | PhysicsCategory.ground.rawValue | PhysicsCategory.powerup.rawValue | PhysicsCategory.coin.rawValue | PhysicsCategory.crate.rawValue
         self.physicsBody?.collisionBitMask = PhysicsCategory.ground.rawValue
         
         self.physicsBody?.affectedByGravity = false

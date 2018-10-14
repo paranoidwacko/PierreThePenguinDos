@@ -23,6 +23,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var coinsCollected = 0
     let hud = HUD()
     var backgrounds: [Background] = []
+    let particlePool = ParticlePool()
+    let heartCrate = Crate()
     
     override func didMove(to view: SKView) {
         self.anchorPoint = .zero
@@ -68,6 +70,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             player.addChild(dotEmitter)
             dotEmitter.targetNode = self
         }
+        
+        self.particlePool.addEmittersToScene(scene: self)
+        
+        self.addChild(self.heartCrate)
+        heartCrate.position = CGPoint(x: -2100, y: -2100)
+        heartCrate.turnToHeartCrate()
     }
     
     override func didSimulatePhysics() {
@@ -103,6 +111,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     powerUpStar.physicsBody?.angularVelocity = 0
                     powerUpStar.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
                 }
+            }
+            if starRoll == 1 {
+                heartCrate.reset()
+                heartCrate.position = CGPoint(x: nextEncounterSpawnPosition - 600, y: 270)
             }
         }
         
@@ -165,25 +177,25 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         switch otherBody.categoryBitMask {
         case PhysicsCategory.ground.rawValue:
-            print("Hit the ground")
             player.takeDamage()
             hud.setHealthDisplay(newHealth: player.health)
         case PhysicsCategory.enemy.rawValue:
-            print("Take damage")
             self.player.takeDamage()
             hud.setHealthDisplay(newHealth: player.health)
         case PhysicsCategory.coin.rawValue:
-            print("Collect a coin")
             if let coin = otherBody.node as? Coin {
                 coin.collect()
                 self.coinsCollected += coin.value
                 hud.setCoinCountDisplay(newCoinCount: self.coinsCollected)
             }
         case PhysicsCategory.powerup.rawValue:
-            print("Start the power-up")
             self.player.starPower()
+        case PhysicsCategory.crate.rawValue:
+            if let crate = otherBody.node as? Crate {
+                crate.explode(gameScene: self)
+            }
         default:
-            print("Contact with no game logic")
+            return
         }
     }
 }
