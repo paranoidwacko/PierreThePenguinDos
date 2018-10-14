@@ -13,7 +13,6 @@ class Coin: SKSpriteNode, GameSprite {
     var textureAtlas: SKTextureAtlas = SKTextureAtlas(named: TextureAtlasName.Environment.rawValue)
     var initialSize: CGSize = CGSize(width: 26, height: 26)
     var value = 1
-    let coinSound = SKAction.playSoundFileNamed("Sound/Coin.aif", waitForCompletion: false)
     
     init() {
         let bronzeTexture = textureAtlas.textureNamed(TextureName.CoinBronze.rawValue)
@@ -53,7 +52,9 @@ class Coin: SKSpriteNode, GameSprite {
             resetAfterCollected
             ])
         self.run(collectSequence)
-        self.run(coinSound)
+        if let audioAction = AudioManager.AudioAction(of: AudioName.Coin) {
+            self.run(audioAction)
+        }
     }
     
     required init?(coder aDecoder: NSCoder) {

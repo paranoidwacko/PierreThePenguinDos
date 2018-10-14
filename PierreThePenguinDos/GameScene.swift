@@ -74,7 +74,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         heartCrate.position = CGPoint(x: -2100, y: -2100)
         heartCrate.turnToHeartCrate()
         
-        self.run(SKAction.playSoundFileNamed("Sound/StartGame.aif", waitForCompletion: false))
+        if let audioAction = AudioManager.AudioAction(of: AudioName.GameStart) {
+            self.run(audioAction)
+        }
     }
     
     override func didSimulatePhysics() {
