@@ -24,6 +24,8 @@ class Player: SKSpriteNode, GameSprite {
     var damageAnimation = SKAction()
     var dieAnimation = SKAction()
     var forwardVelocity: CGFloat = 200
+    let powerupSound = SKAction.playSoundFileNamed("Sound/Powerup.aif", waitForCompletion: false)
+    let hurtSound = SKAction.playSoundFileNamed("Sound/Hurt.aif", waitForCompletion: false)
     
     init() {
         super.init(texture: nil, color: .clear, size: initialSize)
@@ -158,6 +160,10 @@ class Player: SKSpriteNode, GameSprite {
         self.run(self.dieAnimation)
         self.flapping = false
         self.forwardVelocity = 0
+        
+        if let gameScene = self.parent as? GameScene {
+            gameScene.gameOver()
+        }
     }
     
     func takeDamage() {
@@ -171,6 +177,7 @@ class Player: SKSpriteNode, GameSprite {
         } else {
             self.run(self.damageAnimation)
         }
+        self.run(hurtSound)
     }
     
     func starPower() {
@@ -187,6 +194,7 @@ class Player: SKSpriteNode, GameSprite {
             }
             ])
         self.run(starSequence, withKey: "starPower")
+        self.run(powerupSound)
     }
     
     required init?(coder aDecoder: NSCoder) {

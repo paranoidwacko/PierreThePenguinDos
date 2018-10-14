@@ -8,6 +8,7 @@
 
 import SpriteKit
 import CoreMotion
+import GameKit
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
     let cam = SKCameraNode()
@@ -76,6 +77,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.addChild(self.heartCrate)
         heartCrate.position = CGPoint(x: -2100, y: -2100)
         heartCrate.turnToHeartCrate()
+        
+        self.run(SKAction.playSoundFileNamed("Sound/StartGame.aif", waitForCompletion: false))
     }
     
     override func didSimulatePhysics() {
@@ -149,14 +152,28 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        for touch in touches {
+            let location = touch.location(in: self)
+            let nodeTouched = atPoint(location)
+            if let gameSprite = nodeTouched as? GameSprite {
+                gameSprite.onTap()
+            }
+            
+            if nodeTouched.name == "restartGame" {
+                self.view?.presentScene(GameScene(size: self.size), transition: .crossFade(withDuration: 0.6))
+            } else if nodeTouched.name == "returnToMen" {
+                self.view?.presentScene(MenuScene(size: self.size), transition: .crossFade(withDuration: 0.6))
+            }
+        }
         self.player.startFlapping()
-//        for touch in touches {
-//            let location = touch.location(in: self)
-//            let nodeTouched = atPoint(location)
-//            if let gameSprite = nodeTouched as? GameSprite {
-//                gameSprite.onTap()
-//            }
-//        }
+
+////        for touch in touches {
+////            let location = touch.location(in: self)
+////            let nodeTouched = atPoint(location)
+////            if let gameSprite = nodeTouched as? GameSprite {
+////                gameSprite.onTap()
+////            }
+////        }
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -196,6 +213,39 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             }
         default:
             return
+        }
+    }
+    
+    func gameOver() {
+        hud.showButtons()
+        updateLeaderboard()
+        checkForAchievements()
+    }
+    
+    func updateLeaderboard() {
+        if GKLocalPlayer.localPlayer().isAuthenticated {
+            let score = GKScore(leaderboardIdentifier: "pierre_the_penguin_coin_count")
+            score.value = Int64(self.coinsCollected)
+            GKScore.report([score], withCompletionHandler: { (error: Error?) -> Void in
+                if error != nil {
+                    print(error!)
+                }
+            })
+        }
+    }
+    
+    func checkForAchievements() {
+        if GKLocalPlayer.localPlayer().isAuthenticated {
+            if self.coinsCollected >= 100 {
+                let achieve = GKAchievement(identifier: "100_coins")
+                achieve.showsCompletionBanner = true
+                achieve.percentComplete = 100
+                GKAchievement.report([achieve], withCompletionHandler: {(error : Error?) -> Void in
+                    if error != nil {
+                        print(error!)
+                    }
+                })
+            }
         }
     }
 }
