@@ -10,6 +10,9 @@ import SpriteKit
 import GameKit
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
+    fileprivate static let KEY_CHALLENGE_100_COINS = "100_coins"
+    fileprivate static let KEY_LEADERBOARD_ID = "pierre_the_penguin_coin_count"    
+    
     let cam = SKCameraNode()
     let ground = Ground()
     let player = Player()
@@ -61,7 +64,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         backgrounds[1].spawn(parentNode: self, imageName: TextureName.BackgroundMiddle.rawValue, zPosition: -10, movementMultiplier: 0.5)
         backgrounds[2].spawn(parentNode: self, imageName: TextureName.BackgroundBack.rawValue, zPosition: -15, movementMultiplier: 0.2)
         
-        if let dotEmitter = SKEmitterNode(fileNamed: "PierrePath") {
+        if let dotEmitter = SKEmitterNode(fileNamed: ParticleName.PierrePath.rawValue) {
             player.zPosition = 10
             dotEmitter.particleZPosition = -1
             player.addChild(dotEmitter)
@@ -126,27 +129,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     override func update(_ currentTime: TimeInterval) {
         player.update()
-        
-//        if let accelData = self.motionManager.accelerometerData {
-//            var forceAmount: CGFloat
-//            var movement = CGVector()
-//
-//            switch UIApplication.shared.statusBarOrientation {
-//            case .landscapeLeft:
-//                forceAmount = 20000
-//            case .landscapeRight:
-//                forceAmount = -20000
-//            default:
-//                forceAmount = 0
-//            }
-//
-//            if accelData.acceleration.y > 0.15 {
-//                movement.dx = forceAmount
-//            } else if accelData.acceleration.y < -0.15 {
-//                movement.dx = -forceAmount
-//            }
-//            player.physicsBody?.applyForce(movement)
-//        }
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -157,21 +139,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 gameSprite.onTap()
             }
             
-            if nodeTouched.name == "restartGame" {
+            if nodeTouched.name == HUD.NAME_BUTTON_RESTART {
                 self.view?.presentScene(GameScene(size: self.size), transition: .crossFade(withDuration: 0.6))
-            } else if nodeTouched.name == "returnToMen" {
+            } else if nodeTouched.name == HUD.NAME_BUTTON_MENU {
                 self.view?.presentScene(MenuScene(size: self.size), transition: .crossFade(withDuration: 0.6))
             }
         }
         self.player.startFlapping()
-
-////        for touch in touches {
-////            let location = touch.location(in: self)
-////            let nodeTouched = atPoint(location)
-////            if let gameSprite = nodeTouched as? GameSprite {
-////                gameSprite.onTap()
-////            }
-////        }
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -222,7 +196,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func updateLeaderboard() {
         if GKLocalPlayer.localPlayer().isAuthenticated {
-            let score = GKScore(leaderboardIdentifier: "pierre_the_penguin_coin_count")
+            let score = GKScore(leaderboardIdentifier: GameScene.KEY_LEADERBOARD_ID)
             score.value = Int64(self.coinsCollected)
             GKScore.report([score], withCompletionHandler: { (error: Error?) -> Void in
                 if error != nil {
@@ -235,7 +209,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func checkForAchievements() {
         if GKLocalPlayer.localPlayer().isAuthenticated {
             if self.coinsCollected >= 100 {
-                let achieve = GKAchievement(identifier: "100_coins")
+                let achieve = GKAchievement(identifier: GameScene.KEY_CHALLENGE_100_COINS)
                 achieve.showsCompletionBanner = true
                 achieve.percentComplete = 100
                 GKAchievement.report([achieve], withCompletionHandler: {(error : Error?) -> Void in

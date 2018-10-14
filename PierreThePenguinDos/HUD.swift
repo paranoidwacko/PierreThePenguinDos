@@ -10,10 +10,14 @@ import Foundation
 import SpriteKit
 
 class HUD: SKNode {
+    public static let NAME_BUTTON_MENU: String = "returnToMenu"
+    public static let NAME_BUTTON_RESTART: String = "restartGame"
+    fileprivate static let TEXT_INITIAL_COIN_COUNT: String = "000000"
+    
     var textureAtlas = SKTextureAtlas(named: TextureAtlasName.HUD.rawValue)
     var coinAtlas = SKTextureAtlas(named: TextureAtlasName.Environment.rawValue)
     var heartNodes: [SKSpriteNode] = []
-    let coinCountText = SKLabelNode(text: "000000")
+    let coinCountText = SKLabelNode(text: HUD.TEXT_INITIAL_COIN_COUNT)
     let restartButton = SKSpriteNode()
     let menuButton = SKSpriteNode()
     
@@ -23,7 +27,7 @@ class HUD: SKNode {
         let coinPosition = CGPoint(x: -cameraOrigin.x + 23, y: cameraOrigin.y - 23)
         coinIcon.size = CGSize(width: 26, height: 26)
         coinIcon.position = coinPosition
-        coinCountText.fontName = "AvenirNext-HeavyItalic"
+        coinCountText.fontName = FontName.AvenirNextHeavyItalic.rawValue
         let coinTextPosition = CGPoint(x: -cameraOrigin.x + 41, y: coinPosition.y)
         coinCountText.position = coinTextPosition
         coinCountText.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.left
@@ -42,8 +46,8 @@ class HUD: SKNode {
         
         restartButton.texture = textureAtlas.textureNamed(TextureName.ButtonRestart.rawValue)
         menuButton.texture = textureAtlas.textureNamed(TextureName.ButtonMenu.rawValue)
-        restartButton.name = "restartGame"
-        menuButton.name = "returnToMen"
+        restartButton.name = HUD.NAME_BUTTON_RESTART
+        menuButton.name = HUD.NAME_BUTTON_MENU
         menuButton.position = CGPoint(x: -140, y: 0)
         restartButton.size = CGSize(width: 140, height: 140)
         menuButton.size = CGSize(width: 70, height: 70)

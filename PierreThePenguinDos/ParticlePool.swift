@@ -18,19 +18,19 @@ class ParticlePool {
     
     init() {
         for i in 1...5 {
-            if let crate = SKEmitterNode(fileNamed: "CrateExplosion") {
+            if let crate = SKEmitterNode(fileNamed: ParticleName.CrateExplosion.rawValue) {
                 crate.position = CGPoint(x: -2000, y: -2000)
                 crate.zPosition = CGFloat(45 - i)
-                crate.name = "crate" + String(i)
+                crate.name = EmitterType.Crate.rawValue + String(i)
                 cratePool.append(crate)
             }
         }
         
         for i in 1...1 {
-            if let heart = SKEmitterNode(fileNamed: "HeartExplosion") {
+            if let heart = SKEmitterNode(fileNamed: ParticleName.HeartExplosion.rawValue) {
                 heart.position = CGPoint(x: -2000, y: -2000)
                 heart.zPosition = CGFloat(45 - i)
-                heart.name = "heart" + String(i)
+                heart.name = EmitterType.Heart.rawValue + String(i)
                 heartPool.append(heart)
             }
         }
@@ -49,13 +49,13 @@ class ParticlePool {
     func placeEmitter(node: SKNode, emitterType: String) {
         var emitter: SKEmitterNode
         switch emitterType {
-        case "crate":
+        case EmitterType.Crate.rawValue:
             emitter = cratePool[crateIndex]
             crateIndex += 1
             if crateIndex >= cratePool.count {
                 crateIndex = 0
             }
-        case "heart":
+        case EmitterType.Heart.rawValue:
             emitter = heartPool[heartIndex]
             heartIndex += 1
             if heartIndex >= heartPool.count {

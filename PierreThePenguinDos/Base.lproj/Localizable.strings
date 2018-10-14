@@ -1,0 +1,11 @@
+/* 
+  Localizable.strings
+  PierreThePenguinDos
+
+  Created by Sparrow on 10/14/18.
+  Copyright © 2018 ParanoidWacko. All rights reserved.
+*/
+app_subtitle = "Escapes the Antarctic";
+app_title = "Pierre Penguin";
+menu_button_leaderboard = "Leaderboard";
+menu_button_start = "START GAME";

@@ -10,6 +10,10 @@ import Foundation
 import SpriteKit
 
 class Player: SKSpriteNode, GameSprite {
+    fileprivate static let KEY_ANIMATION_FLAP = "flapAnimation"
+    fileprivate static let KEY_ANIMATION_SOAR = "soarAnimation"
+    fileprivate static let KEY_ANIMATION_STAR = "starPower"
+    
     var initialSize = CGSize(width: 64, height: 64)
     var textureAtlas: SKTextureAtlas = SKTextureAtlas(named: TextureAtlasName.Pierre.rawValue)
     var flyAnimation = SKAction()
@@ -28,7 +32,7 @@ class Player: SKSpriteNode, GameSprite {
     init() {
         super.init(texture: nil, color: .clear, size: initialSize)
         createAnimations()
-        self.run(soarAnimation, withKey: "soarAnimation")
+        self.run(soarAnimation, withKey: Player.KEY_ANIMATION_SOAR)
         
         let bodyTexture = textureAtlas.textureNamed(TextureName.PierreFlying3.rawValue)
         self.physicsBody = SKPhysicsBody(texture: bodyTexture, size: self.size)
@@ -138,8 +142,8 @@ class Player: SKSpriteNode, GameSprite {
         if self.health <= 0 {
             return
         }
-        self.removeAction(forKey: "soarAnimation")
-        self.run(flyAnimation, withKey: "flapAnimation")
+        self.removeAction(forKey: Player.KEY_ANIMATION_SOAR)
+        self.run(flyAnimation, withKey: Player.KEY_ANIMATION_FLAP)
         self.flapping = true
     }
     
@@ -147,8 +151,8 @@ class Player: SKSpriteNode, GameSprite {
         if self.health <= 0 {
             return
         }
-        self.removeAction(forKey: "flapAnimation")
-        self.run(soarAnimation, withKey: "soarAnimation")
+        self.removeAction(forKey: Player.KEY_ANIMATION_FLAP)
+        self.run(soarAnimation, withKey: Player.KEY_ANIMATION_SOAR)
         self.flapping = false
     }
     
@@ -181,7 +185,7 @@ class Player: SKSpriteNode, GameSprite {
     }
     
     func starPower() {
-        self.removeAction(forKey: "starPower")
+        self.removeAction(forKey: Player.KEY_ANIMATION_STAR)
         self.forwardVelocity = 400
         self.invulnerable = true
         let starSequence = SKAction.sequence([
@@ -193,7 +197,7 @@ class Player: SKSpriteNode, GameSprite {
                 self.invulnerable = false
             }
             ])
-        self.run(starSequence, withKey: "starPower")
+        self.run(starSequence, withKey: Player.KEY_ANIMATION_STAR)
         if let audioAction = AudioManager.AudioAction(of: AudioName.PowerUp) {
             self.run(audioAction)
         }

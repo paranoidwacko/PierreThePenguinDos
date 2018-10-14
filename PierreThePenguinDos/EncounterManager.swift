@@ -10,10 +10,13 @@ import Foundation
 import SpriteKit
 
 class EncounterManager {
+    fileprivate let KEY_INITIAL_POSITION: String = "initialPosition"
+    fileprivate let NAME_CHILD_NODES = "gold"
+    
     let encounterName: [String] = [
-        "EncounterA",
-        "EncounterB",
-        "EncounterC"
+        EncounterName.EncounterA.rawValue,
+        EncounterName.EncounterB.rawValue,
+        EncounterName.EncounterC.rawValue
     ]
     var encounters: [SKNode] = []
     var currentEncounterIndex: Int?
@@ -29,7 +32,7 @@ class EncounterManager {
                     copyOfNode.name = child.name
                     encounterNode.addChild(copyOfNode)
                     saveSpritePositions(node: encounterNode)
-                    encounterNode.enumerateChildNodes(withName: "gold", using: { (node: SKNode, stop: UnsafeMutablePointer) in
+                    encounterNode.enumerateChildNodes(withName: self.NAME_CHILD_NODES, using: { (node: SKNode, stop: UnsafeMutablePointer) in
                         (node as? Coin)?.turnToGold()
                         })
                 }
@@ -51,7 +54,7 @@ class EncounterManager {
         for sprite in node.children {
             if let spriteNode = sprite as? SKSpriteNode {
                 let initialPositionValue = NSValue.init(cgPoint: sprite.position)
-                spriteNode.userData = ["initialPosition": initialPositionValue]
+                spriteNode.userData = [self.KEY_INITIAL_POSITION: initialPositionValue]
                 saveSpritePositions(node: spriteNode)
             }
         }
@@ -66,7 +69,7 @@ class EncounterManager {
                 if let crateTest = spriteNode as? Crate {
                     crateTest.reset()
                 }
-                if let initialPositionVal = spriteNode.userData?.value(forKey: "initialPosition") as? NSValue {
+                if let initialPositionVal = spriteNode.userData?.value(forKey: self.KEY_INITIAL_POSITION) as? NSValue {
                     spriteNode.position = initialPositionVal.cgPointValue
                 }
                 resetSpritePosition(node: spriteNode)

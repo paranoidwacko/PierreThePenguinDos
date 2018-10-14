@@ -34,7 +34,7 @@ class Crate: SKSpriteNode, GameSprite {
             return
         }
         exploded = true
-        gameScene.particlePool.placeEmitter(node: self, emitterType: "crate")
+        gameScene.particlePool.placeEmitter(node: self, emitterType: EmitterType.Crate.rawValue)
         self.run(SKAction.fadeAlpha(to: 0, duration: 0.1))
         
         if (givesHeart) {
@@ -42,7 +42,7 @@ class Crate: SKSpriteNode, GameSprite {
             let maxHealth = gameScene.player.maxHealth
             gameScene.player.health = newHealth > maxHealth ? maxHealth : newHealth
             gameScene.hud.setHealthDisplay(newHealth: gameScene.player.health)
-            gameScene.particlePool.placeEmitter(node: self, emitterType: "heart")
+            gameScene.particlePool.placeEmitter(node: self, emitterType: EmitterType.Heart.rawValue)
         } else {
             gameScene.coinsCollected += 25
             gameScene.hud.setCoinCountDisplay(newCoinCount: gameScene.coinsCollected)
