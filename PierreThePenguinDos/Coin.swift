@@ -33,6 +33,27 @@ class Coin: SKSpriteNode, GameSprite {
         
     }
     
+    func collect() {
+        self.physicsBody?.categoryBitMask = 0
+        let collectAnimation = SKAction.group([
+            SKAction.fadeAlpha(by: 0, duration: 0.2),
+            SKAction.scale(by: 1.5, duration: 0.2),
+            SKAction.move(by: CGVector(dx: 0, dy: 25), duration: 0.2)
+            ])
+        let resetAfterCollected = SKAction.run {
+            self.position.y = 5000
+            self.alpha = 1
+            self.xScale = 1
+            self.yScale = 1
+            self.physicsBody?.categoryBitMask = PhysicsCategory.coin.rawValue
+        }
+        let collectSequence = SKAction.sequence([
+            collectAnimation,
+            resetAfterCollected
+            ])
+        self.run(collectSequence)
+    }
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
