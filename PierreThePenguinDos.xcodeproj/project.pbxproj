@@ -9,11 +9,24 @@
 /* Begin PBXBuildFile section */
 		1F4D43B4216D2BEB00BF4929 /* Star.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4D43B3216D2BEB00BF4929 /* Star.swift */; };
 		1F4D43B6216D323900BF4929 /* MadFly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4D43B5216D323900BF4929 /* MadFly.swift */; };
-		1F4D43B8216D351A00BF4929 /* Bats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4D43B7216D351A00BF4929 /* Bats.swift */; };
+		1F4D43B8216D351A00BF4929 /* Bat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4D43B7216D351A00BF4929 /* Bat.swift */; };
 		1F4D43BA216D36A800BF4929 /* Blade.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4D43B9216D36A800BF4929 /* Blade.swift */; };
 		1F4D43BC216D38DB00BF4929 /* Coin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4D43BB216D38DB00BF4929 /* Coin.swift */; };
 		1F4D43C0216EF0FC00BF4929 /* EncounterA.sks in Resources */ = {isa = PBXBuildFile; fileRef = 1F4D43BF216EF0FC00BF4929 /* EncounterA.sks */; };
 		1F4D43C2216EF3B600BF4929 /* EncounterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4D43C1216EF3B600BF4929 /* EncounterManager.swift */; };
+		844CAF5221728ADA0096894D /* EncounterB.sks in Resources */ = {isa = PBXBuildFile; fileRef = 844CAF5121728ADA0096894D /* EncounterB.sks */; };
+		844CAF5421728AF60096894D /* EncounterC.sks in Resources */ = {isa = PBXBuildFile; fileRef = 844CAF5321728AF60096894D /* EncounterC.sks */; };
+		844CAF562172A3430096894D /* PhysicsCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844CAF552172A3430096894D /* PhysicsCategory.swift */; };
+		844CAF582172BC4E0096894D /* HUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844CAF572172BC4E0096894D /* HUD.swift */; };
+		844CAF5A2172C0EF0096894D /* Background.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844CAF592172C0EF0096894D /* Background.swift */; };
+		844CAF5C2172C46E0096894D /* PierrePath.sks in Resources */ = {isa = PBXBuildFile; fileRef = 844CAF5B2172C46E0096894D /* PierrePath.sks */; };
+		844CAF5E2172CE860096894D /* Crate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844CAF5D2172CE860096894D /* Crate.swift */; };
+		844CAF602172CFE10096894D /* HeartExplosion.sks in Resources */ = {isa = PBXBuildFile; fileRef = 844CAF5F2172CFE10096894D /* HeartExplosion.sks */; };
+		844CAF622172D0570096894D /* CrateExplosion.sks in Resources */ = {isa = PBXBuildFile; fileRef = 844CAF612172D0570096894D /* CrateExplosion.sks */; };
+		844CAF642172D0D90096894D /* ParticlePool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844CAF632172D0D90096894D /* ParticlePool.swift */; };
+		844CAF662172F2310096894D /* MenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844CAF652172F2310096894D /* MenuScene.swift */; };
+		844CAF682172F92B0096894D /* Sound in Resources */ = {isa = PBXBuildFile; fileRef = 844CAF672172F92A0096894D /* Sound */; };
+		844CAF6B2173AA9E0096894D /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 844CAF6A2173AA9E0096894D /* GameKit.framework */; };
 		84765037216A99BC00B205AB /* GameSprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84765036216A99BC00B205AB /* GameSprite.swift */; };
 		84765039216A9AD400B205AB /* Bee.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84765038216A9AD400B205AB /* Bee.swift */; };
 		8476503B216A9CCA00B205AB /* Ground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8476503A216A9CCA00B205AB /* Ground.swift */; };
@@ -31,11 +44,24 @@
 /* Begin PBXFileReference section */
 		1F4D43B3216D2BEB00BF4929 /* Star.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Star.swift; sourceTree = "<group>"; };
 		1F4D43B5216D323900BF4929 /* MadFly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MadFly.swift; sourceTree = "<group>"; };
-		1F4D43B7216D351A00BF4929 /* Bats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bats.swift; sourceTree = "<group>"; };
+		1F4D43B7216D351A00BF4929 /* Bat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bat.swift; sourceTree = "<group>"; };
 		1F4D43B9216D36A800BF4929 /* Blade.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Blade.swift; sourceTree = "<group>"; };
 		1F4D43BB216D38DB00BF4929 /* Coin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coin.swift; sourceTree = "<group>"; };
 		1F4D43BF216EF0FC00BF4929 /* EncounterA.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = EncounterA.sks; sourceTree = "<group>"; };
 		1F4D43C1216EF3B600BF4929 /* EncounterManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EncounterManager.swift; sourceTree = "<group>"; };
+		844CAF5121728ADA0096894D /* EncounterB.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = EncounterB.sks; sourceTree = "<group>"; };
+		844CAF5321728AF60096894D /* EncounterC.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = EncounterC.sks; sourceTree = "<group>"; };
+		844CAF552172A3430096894D /* PhysicsCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhysicsCategory.swift; sourceTree = "<group>"; };
+		844CAF572172BC4E0096894D /* HUD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HUD.swift; sourceTree = "<group>"; };
+		844CAF592172C0EF0096894D /* Background.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Background.swift; sourceTree = "<group>"; };
+		844CAF5B2172C46E0096894D /* PierrePath.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = PierrePath.sks; sourceTree = "<group>"; };
+		844CAF5D2172CE860096894D /* Crate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Crate.swift; sourceTree = "<group>"; };
+		844CAF5F2172CFE10096894D /* HeartExplosion.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = HeartExplosion.sks; sourceTree = "<group>"; };
+		844CAF612172D0570096894D /* CrateExplosion.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = CrateExplosion.sks; sourceTree = "<group>"; };
+		844CAF632172D0D90096894D /* ParticlePool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticlePool.swift; sourceTree = "<group>"; };
+		844CAF652172F2310096894D /* MenuScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuScene.swift; sourceTree = "<group>"; };
+		844CAF672172F92A0096894D /* Sound */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Sound; sourceTree = "<group>"; };
+		844CAF6A2173AA9E0096894D /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		84765036216A99BC00B205AB /* GameSprite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSprite.swift; sourceTree = "<group>"; };
 		84765038216A9AD400B205AB /* Bee.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bee.swift; sourceTree = "<group>"; };
 		8476503A216A9CCA00B205AB /* Ground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ground.swift; sourceTree = "<group>"; };
@@ -57,6 +83,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				844CAF6B2173AA9E0096894D /* GameKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -67,8 +94,18 @@
 			isa = PBXGroup;
 			children = (
 				1F4D43BF216EF0FC00BF4929 /* EncounterA.sks */,
+				844CAF5121728ADA0096894D /* EncounterB.sks */,
+				844CAF5321728AF60096894D /* EncounterC.sks */,
 			);
 			path = Encounters;
+			sourceTree = "<group>";
+		};
+		844CAF692173AA9E0096894D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				844CAF6A2173AA9E0096894D /* GameKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		84F05C5221475BBE004AF466 = {
@@ -76,6 +113,7 @@
 			children = (
 				84F05C5D21475BBE004AF466 /* PierreThePenguinDos */,
 				84F05C5C21475BBE004AF466 /* Products */,
+				844CAF692173AA9E0096894D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -90,12 +128,13 @@
 		84F05C5D21475BBE004AF466 /* PierreThePenguinDos */ = {
 			isa = PBXGroup;
 			children = (
+				844CAF672172F92A0096894D /* Sound */,
 				1F4D43BE216EF0A200BF4929 /* Encounters */,
 				84F05C7021475BBE004AF466 /* Info.plist */,
 				84F05C6221475BBE004AF466 /* Actions.sks */,
 				84F05C6021475BBE004AF466 /* GameScene.sks */,
 				84F05C5E21475BBE004AF466 /* AppDelegate.swift */,
-				1F4D43B7216D351A00BF4929 /* Bats.swift */,
+				1F4D43B7216D351A00BF4929 /* Bat.swift */,
 				84765038216A9AD400B205AB /* Bee.swift */,
 				1F4D43B9216D36A800BF4929 /* Blade.swift */,
 				1F4D43BB216D38DB00BF4929 /* Coin.swift */,
@@ -110,6 +149,15 @@
 				84F05C6D21475BBE004AF466 /* LaunchScreen.storyboard */,
 				84F05C6821475BBE004AF466 /* Main.storyboard */,
 				1F4D43C1216EF3B600BF4929 /* EncounterManager.swift */,
+				844CAF552172A3430096894D /* PhysicsCategory.swift */,
+				844CAF572172BC4E0096894D /* HUD.swift */,
+				844CAF592172C0EF0096894D /* Background.swift */,
+				844CAF5B2172C46E0096894D /* PierrePath.sks */,
+				844CAF5D2172CE860096894D /* Crate.swift */,
+				844CAF5F2172CFE10096894D /* HeartExplosion.sks */,
+				844CAF612172D0570096894D /* CrateExplosion.sks */,
+				844CAF632172D0D90096894D /* ParticlePool.swift */,
+				844CAF652172F2310096894D /* MenuScene.swift */,
 			);
 			path = PierreThePenguinDos;
 			sourceTree = "<group>";
@@ -147,6 +195,11 @@
 					84F05C5A21475BBE004AF466 = {
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.GameCenter = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -173,10 +226,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				844CAF602172CFE10096894D /* HeartExplosion.sks in Resources */,
+				844CAF5221728ADA0096894D /* EncounterB.sks in Resources */,
 				84F05C6A21475BBE004AF466 /* Main.storyboard in Resources */,
 				84F05C6121475BBE004AF466 /* GameScene.sks in Resources */,
+				844CAF5421728AF60096894D /* EncounterC.sks in Resources */,
 				84F05C6C21475BBE004AF466 /* Assets.xcassets in Resources */,
+				844CAF682172F92B0096894D /* Sound in Resources */,
 				1F4D43C0216EF0FC00BF4929 /* EncounterA.sks in Resources */,
+				844CAF5C2172C46E0096894D /* PierrePath.sks in Resources */,
+				844CAF622172D0570096894D /* CrateExplosion.sks in Resources */,
 				84F05C6F21475BBE004AF466 /* LaunchScreen.storyboard in Resources */,
 				84F05C6321475BBE004AF466 /* Actions.sks in Resources */,
 			);
@@ -189,19 +248,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				844CAF662172F2310096894D /* MenuScene.swift in Sources */,
 				8476503B216A9CCA00B205AB /* Ground.swift in Sources */,
 				84765039216A9AD400B205AB /* Bee.swift in Sources */,
 				84765037216A99BC00B205AB /* GameSprite.swift in Sources */,
 				84F05C6521475BBE004AF466 /* GameScene.swift in Sources */,
 				8476503D216AA12B00B205AB /* Player.swift in Sources */,
 				84F05C6721475BBE004AF466 /* GameViewController.swift in Sources */,
+				844CAF582172BC4E0096894D /* HUD.swift in Sources */,
 				1F4D43BC216D38DB00BF4929 /* Coin.swift in Sources */,
 				84F05C5F21475BBE004AF466 /* AppDelegate.swift in Sources */,
-				1F4D43B8216D351A00BF4929 /* Bats.swift in Sources */,
+				1F4D43B8216D351A00BF4929 /* Bat.swift in Sources */,
 				1F4D43BA216D36A800BF4929 /* Blade.swift in Sources */,
+				844CAF5A2172C0EF0096894D /* Background.swift in Sources */,
 				1F4D43B6216D323900BF4929 /* MadFly.swift in Sources */,
 				1F4D43C2216EF3B600BF4929 /* EncounterManager.swift in Sources */,
+				844CAF5E2172CE860096894D /* Crate.swift in Sources */,
 				1F4D43B4216D2BEB00BF4929 /* Star.swift in Sources */,
+				844CAF562172A3430096894D /* PhysicsCategory.swift in Sources */,
+				844CAF642172D0D90096894D /* ParticlePool.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -339,10 +404,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = MGAM2P8BLL;
+				DEVELOPMENT_TEAM = F3SY488NTT;
 				INFOPLIST_FILE = PierreThePenguinDos/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.paranoidwacko.PierreThePenguinDos;
+				PRODUCT_BUNDLE_IDENTIFIER = com.paranoidwacko.pierrethepenguin;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -354,10 +419,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = MGAM2P8BLL;
+				DEVELOPMENT_TEAM = F3SY488NTT;
 				INFOPLIST_FILE = PierreThePenguinDos/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.paranoidwacko.PierreThePenguinDos;
+				PRODUCT_BUNDLE_IDENTIFIER = com.paranoidwacko.pierrethepenguin;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
