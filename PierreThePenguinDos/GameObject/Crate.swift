@@ -10,7 +10,7 @@ import Foundation
 import SpriteKit
 
 class Crate: SKSpriteNode, GameSprite {
-    var textureAtlas: SKTextureAtlas = SKTextureAtlas(named: "Environment")
+    var textureAtlas: SKTextureAtlas = SKTextureAtlas(named: TextureAtlasName.Environment.rawValue)
     var initialSize: CGSize = CGSize(width: 40, height: 40)
     var givesHeart = false
     var exploded = false
@@ -20,12 +20,12 @@ class Crate: SKSpriteNode, GameSprite {
         self.physicsBody = SKPhysicsBody(rectangleOf: initialSize)
         self.physicsBody?.collisionBitMask = PhysicsCategory.ground.rawValue | PhysicsCategory.crate.rawValue
         self.physicsBody?.categoryBitMask = PhysicsCategory.crate.rawValue
-        self.texture = textureAtlas.textureNamed("crate")
+        self.texture = textureAtlas.textureNamed(TextureName.Crate.rawValue)
     }
     
     func turnToHeartCrate() {
         self.physicsBody?.affectedByGravity = false
-        self.texture = textureAtlas.textureNamed("crate-power-up")
+        self.texture = textureAtlas.textureNamed(TextureName.CratePowerUp.rawValue)
         self.givesHeart = true
     }
     

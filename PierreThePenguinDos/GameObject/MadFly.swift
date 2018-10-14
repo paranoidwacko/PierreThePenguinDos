@@ -10,7 +10,7 @@ import Foundation
 import SpriteKit
 
 class MadFly: SKSpriteNode, GameSprite {
-    var textureAtlas: SKTextureAtlas = SKTextureAtlas(named: "Enemies")
+    var textureAtlas: SKTextureAtlas = SKTextureAtlas(named: TextureAtlasName.Enemies.rawValue)
     var initialSize: CGSize = CGSize(width: 61, height: 29)
     var flyAnimation = SKAction()
     
@@ -27,8 +27,8 @@ class MadFly: SKSpriteNode, GameSprite {
     
     func createAnimations() {
         let flyFrames: [SKTexture] = [
-            textureAtlas.textureNamed("madfly"),
-            textureAtlas.textureNamed("madfly-fly")
+            textureAtlas.textureNamed(TextureName.MadFly.rawValue),
+            textureAtlas.textureNamed(TextureName.MadFlyFly.rawValue)
         ]
         let flyAction = SKAction.animate(with: flyFrames, timePerFrame: 0.14)
         self.flyAnimation = SKAction.repeatForever(flyAction)

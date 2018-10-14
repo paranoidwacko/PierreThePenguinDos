@@ -10,8 +10,8 @@ import Foundation
 import SpriteKit
 
 class HUD: SKNode {
-    var textureAtlas = SKTextureAtlas(named: "HUD")
-    var coinAtlas = SKTextureAtlas(named: "Environment")
+    var textureAtlas = SKTextureAtlas(named: TextureAtlasName.HUD.rawValue)
+    var coinAtlas = SKTextureAtlas(named: TextureAtlasName.Environment.rawValue)
     var heartNodes: [SKSpriteNode] = []
     let coinCountText = SKLabelNode(text: "000000")
     let restartButton = SKSpriteNode()
@@ -19,7 +19,7 @@ class HUD: SKNode {
     
     func createHUDNodes(screenSize: CGSize) {
         let cameraOrigin = CGPoint(x: screenSize.width / 2, y: screenSize.height / 2)
-        let coinIcon = SKSpriteNode(texture: coinAtlas.textureNamed("coin-bronze"))
+        let coinIcon = SKSpriteNode(texture: coinAtlas.textureNamed(TextureName.CoinBronze.rawValue))
         let coinPosition = CGPoint(x: -cameraOrigin.x + 23, y: cameraOrigin.y - 23)
         coinIcon.size = CGSize(width: 26, height: 26)
         coinIcon.position = coinPosition
@@ -31,7 +31,7 @@ class HUD: SKNode {
         self.addChild(coinCountText)
         self.addChild(coinIcon)
         for index in 0..<3 {
-            let newHeartNode = SKSpriteNode(texture: textureAtlas.textureNamed("heart-full"))
+            let newHeartNode = SKSpriteNode(texture: textureAtlas.textureNamed(TextureName.HeartFull.rawValue))
             newHeartNode.size = CGSize(width: 46, height: 40)
             let xPos = -cameraOrigin.x + CGFloat(index * 58) + 33
             let yPos = cameraOrigin.y - 66
@@ -40,8 +40,8 @@ class HUD: SKNode {
             self.addChild(newHeartNode)
         }
         
-        restartButton.texture = textureAtlas.textureNamed("button-restart")
-        menuButton.texture = textureAtlas.textureNamed("button-menu")
+        restartButton.texture = textureAtlas.textureNamed(TextureName.ButtonRestart.rawValue)
+        menuButton.texture = textureAtlas.textureNamed(TextureName.ButtonMenu.rawValue)
         restartButton.name = "restartGame"
         menuButton.name = "returnToMen"
         menuButton.position = CGPoint(x: -140, y: 0)

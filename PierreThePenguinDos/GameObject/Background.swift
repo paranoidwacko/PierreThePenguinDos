@@ -13,7 +13,7 @@ class Background: SKSpriteNode {
     var movementMultiplier = CGFloat(0)
     var jumpAdjustment = CGFloat(0)
     let backgroundSize = CGSize(width: 1024, height: 768)
-    var textureAtlas = SKTextureAtlas(named: "Backgrounds")
+    var textureAtlas = SKTextureAtlas(named: TextureAtlasName.Background.rawValue)
     
     func spawn(parentNode: SKNode, imageName: String, zPosition: CGFloat, movementMultiplier: CGFloat) {
         self.anchorPoint = CGPoint.zero

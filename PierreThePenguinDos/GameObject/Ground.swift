@@ -10,14 +10,14 @@ import Foundation
 import SpriteKit
 
 class Ground: SKSpriteNode, GameSprite {
-    var textureAtlas: SKTextureAtlas = SKTextureAtlas(named: "Environment")
+    var textureAtlas: SKTextureAtlas = SKTextureAtlas(named: TextureAtlasName.Environment.rawValue)
     var initialSize: CGSize = CGSize.zero
     var jumpWidth = CGFloat()
     var jumpCount = CGFloat(1)
     
     func createChildren() {
         self.anchorPoint = CGPoint(x: 0, y: 1)
-        let texture = textureAtlas.textureNamed("ground")
+        let texture = textureAtlas.textureNamed(TextureName.Ground.rawValue)
         var tileCount: CGFloat = 0
         let tileSize = CGSize(width: 35, height: 300)
         while tileCount * tileSize.width < self.size.width {

@@ -11,12 +11,12 @@ import SpriteKit
 import GameKit
 
 class MenuScene: SKScene, GKGameCenterControllerDelegate {
-    let textureAtlas: SKTextureAtlas = SKTextureAtlas(named: "HUD")
+    let textureAtlas: SKTextureAtlas = SKTextureAtlas(named: TextureAtlasName.HUD.rawValue)
     let startButton = SKSpriteNode()
     
     override func didMove(to view: SKView) {
         self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
-        let backgroundImage = SKSpriteNode(imageNamed: "background-menu")
+        let backgroundImage = SKSpriteNode(imageNamed: TextureName.BackgroundMenu.rawValue)
         backgroundImage.size = CGSize(width: 1024, height: 768)
         backgroundImage.zPosition = -1
         self.addChild(backgroundImage)
@@ -32,7 +32,7 @@ class MenuScene: SKScene, GKGameCenterControllerDelegate {
         logoTextBottom.fontSize = 40
         self.addChild(logoTextBottom)
         
-        startButton.texture = textureAtlas.textureNamed("button")
+        startButton.texture = textureAtlas.textureNamed(TextureName.Button.rawValue)
         startButton.size = CGSize(width: 295, height: 76)
         startButton.name = "StartBtn"
         startButton.position = CGPoint(x: 0, y: -20)

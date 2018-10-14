@@ -10,13 +10,13 @@ import Foundation
 import SpriteKit
 
 class Coin: SKSpriteNode, GameSprite {
-    var textureAtlas: SKTextureAtlas = SKTextureAtlas(named: "Environment")
+    var textureAtlas: SKTextureAtlas = SKTextureAtlas(named: TextureAtlasName.Environment.rawValue)
     var initialSize: CGSize = CGSize(width: 26, height: 26)
     var value = 1
     let coinSound = SKAction.playSoundFileNamed("Sound/Coin.aif", waitForCompletion: false)
     
     init() {
-        let bronzeTexture = textureAtlas.textureNamed("coin-bronze")
+        let bronzeTexture = textureAtlas.textureNamed(TextureName.CoinBronze.rawValue)
         super.init(texture: bronzeTexture, color: .clear, size: self.initialSize)
         self.physicsBody = SKPhysicsBody(circleOfRadius: size.width / 2)
         self.physicsBody?.affectedByGravity = false
@@ -26,7 +26,7 @@ class Coin: SKSpriteNode, GameSprite {
     }
     
     func turnToGold() {
-        self.texture = self.textureAtlas.textureNamed("coin-gold")
+        self.texture = self.textureAtlas.textureNamed(TextureName.CoinGold.rawValue)
         self.value = 5
     }
     

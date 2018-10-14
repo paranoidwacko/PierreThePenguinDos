@@ -10,12 +10,12 @@ import Foundation
 import SpriteKit
 
 class Star: SKSpriteNode, GameSprite {
-    var textureAtlas: SKTextureAtlas = SKTextureAtlas(named: "Environment")
+    var textureAtlas: SKTextureAtlas = SKTextureAtlas(named: TextureAtlasName.Environment.rawValue)
     var initialSize: CGSize = CGSize(width: 40, height: 38)
     var pulseAnimation = SKAction()
     
     init() {
-        let starTexture = textureAtlas.textureNamed("star")
+        let starTexture = textureAtlas.textureNamed(TextureName.Star.rawValue)
         super.init(texture: starTexture, color: .clear, size: self.initialSize)
         self.physicsBody = SKPhysicsBody(circleOfRadius: size.width / 2)
         self.physicsBody?.affectedByGravity = false

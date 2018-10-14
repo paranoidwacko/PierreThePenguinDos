@@ -10,7 +10,7 @@ import Foundation
 import SpriteKit
 
 class Bat: SKSpriteNode, GameSprite {
-    var textureAtlas: SKTextureAtlas = SKTextureAtlas(named: "Enemies")
+    var textureAtlas: SKTextureAtlas = SKTextureAtlas(named: TextureAtlasName.Enemies.rawValue)
     var initialSize: CGSize = CGSize(width: 44, height: 24)
     var flyAnimation = SKAction()
     
@@ -27,8 +27,8 @@ class Bat: SKSpriteNode, GameSprite {
     
     func createAnimations() {
         let flyFrames: [SKTexture] = [
-            textureAtlas.textureNamed("bat"),
-            textureAtlas.textureNamed("bat-fly")
+            textureAtlas.textureNamed(TextureName.Bat.rawValue),
+            textureAtlas.textureNamed(TextureName.BatFly.rawValue)
         ]
         let flyAction = SKAction.animate(with: flyFrames, timePerFrame: 0.12)
         self.flyAnimation = SKAction.repeatForever(flyAction)
