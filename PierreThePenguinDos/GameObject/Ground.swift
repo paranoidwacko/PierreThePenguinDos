@@ -9,15 +9,17 @@
 import Foundation
 import SpriteKit
 
-class Ground: SKSpriteNode, GameSprite {
-    var textureAtlas: SKTextureAtlas = SKTextureAtlas(named: TextureAtlasName.Environment.rawValue)
-    var initialSize: CGSize = CGSize.zero
+class Ground: GameSprite {
     var jumpWidth = CGFloat()
     var jumpCount = CGFloat(1)
     
+    init() {
+        super.init(textureAtlas: SKTextureAtlas(named: TextureAtlasName.Environment.rawValue), textureName: nil, color: UIColor.clear, size: CGSize.zero)
+    }
+    
     func createChildren() {
         self.anchorPoint = CGPoint(x: 0, y: 1)
-        let texture = textureAtlas.textureNamed(TextureName.Ground.rawValue)
+        self.Texture(textureName: TextureName.Ground)
         var tileCount: CGFloat = 0
         let tileSize = CGSize(width: 35, height: 300)
         while tileCount * tileSize.width < self.size.width {
@@ -37,8 +39,6 @@ class Ground: SKSpriteNode, GameSprite {
         self.physicsBody?.categoryBitMask = PhysicsCategory.ground.rawValue
     }
     
-    func onTap() {}
-    
     func checkForReposition(playerProgress: CGFloat) {
         let groundJumpPosition = jumpWidth * jumpCount
         
@@ -48,4 +48,9 @@ class Ground: SKSpriteNode, GameSprite {
         }
     }
     
+    override func onTap() { }
+
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
 }

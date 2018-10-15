@@ -9,36 +9,29 @@
 import Foundation
 import SpriteKit
 
-class Blade: SKSpriteNode, GameSprite {
-    var textureAtlas: SKTextureAtlas = SKTextureAtlas(named: TextureAtlasName.Enemies.rawValue)
-    var initialSize: CGSize = CGSize(width: 185, height: 92)
+class Blade: GameSprite {
     var spinAnimation = SKAction()
     
     init() {
-        super.init(texture: nil, color: .clear, size: self.initialSize)
-        let startTexture = textureAtlas.textureNamed(TextureName.Blade.rawValue)
-        self.physicsBody = SKPhysicsBody(texture: startTexture, size: self.initialSize)
+        super.init(textureAtlas: SKTextureAtlas(named: TextureAtlasName.Enemies.rawValue), textureName: TextureName.Blade, color: .clear, size: CGSize(width: 185, height: 92))
+        if let texture = self.texture {
+            self.physicsBody = SKPhysicsBody(texture: texture, size: self.size)
+        }
         self.physicsBody?.affectedByGravity = false
         self.physicsBody?.isDynamic = false
         self.createAnimations()
         self.run(self.spinAnimation)
-        
         self.physicsBody?.categoryBitMask = PhysicsCategory.enemy.rawValue
         self.physicsBody?.collisionBitMask = ~PhysicsCategory.damagedPenguin.rawValue
     }
     
     func createAnimations() {
-        let spinFrames: [SKTexture] = [
-            textureAtlas.textureNamed(TextureName.Blade.rawValue),
-            textureAtlas.textureNamed(TextureName.Blade2.rawValue)
-        ]
+        let spinFrames: [SKTexture] = self.Textures(textureNames: [TextureName.Blade, TextureName.Blade2])
         let spinAction = SKAction.animate(with: spinFrames, timePerFrame: 0.07)
         self.spinAnimation = SKAction.repeatForever(spinAction)
     }
     
-    func onTap() {
-        
-    }
+    override func onTap() { }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)

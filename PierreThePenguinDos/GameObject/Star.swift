@@ -9,14 +9,11 @@
 import Foundation
 import SpriteKit
 
-class Star: SKSpriteNode, GameSprite {
-    var textureAtlas: SKTextureAtlas = SKTextureAtlas(named: TextureAtlasName.Environment.rawValue)
-    var initialSize: CGSize = CGSize(width: 40, height: 38)
+class Star: GameSprite {
     var pulseAnimation = SKAction()
     
     init() {
-        let starTexture = textureAtlas.textureNamed(TextureName.Star.rawValue)
-        super.init(texture: starTexture, color: .clear, size: self.initialSize)
+        super.init(textureAtlas: SKTextureAtlas(named: TextureAtlasName.Environment.rawValue), textureName: TextureName.Star, color: .clear, size: CGSize(width: 40, height: 38))
         self.physicsBody = SKPhysicsBody(circleOfRadius: size.width / 2)
         self.physicsBody?.affectedByGravity = false
         createAnimations()
@@ -40,9 +37,7 @@ class Star: SKSpriteNode, GameSprite {
         self.pulseAnimation = SKAction.repeatForever(pulseSequence)
     }
     
-    func onTap() {
-        
-    }
+    override func onTap() { }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)

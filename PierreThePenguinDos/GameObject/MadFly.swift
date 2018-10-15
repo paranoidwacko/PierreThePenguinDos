@@ -9,13 +9,11 @@
 import Foundation
 import SpriteKit
 
-class MadFly: SKSpriteNode, GameSprite {
-    var textureAtlas: SKTextureAtlas = SKTextureAtlas(named: TextureAtlasName.Enemies.rawValue)
-    var initialSize: CGSize = CGSize(width: 61, height: 29)
+class MadFly: GameSprite {
     var flyAnimation = SKAction()
     
     init() {
-        super.init(texture: nil, color: .clear, size: self.initialSize)
+        super.init(textureAtlas: SKTextureAtlas(named: TextureAtlasName.Enemies.rawValue), textureName: nil, color: .clear, size: CGSize(width: 61, height: 29))
         self.physicsBody = SKPhysicsBody(circleOfRadius: size.width / 2)
         self.physicsBody?.affectedByGravity = false
         createAnimations()
@@ -26,17 +24,12 @@ class MadFly: SKSpriteNode, GameSprite {
     }
     
     func createAnimations() {
-        let flyFrames: [SKTexture] = [
-            textureAtlas.textureNamed(TextureName.MadFly.rawValue),
-            textureAtlas.textureNamed(TextureName.MadFlyFly.rawValue)
-        ]
+        let flyFrames: [SKTexture] = self.Textures(textureNames: [TextureName.MadFly, TextureName.MadFlyFly])
         let flyAction = SKAction.animate(with: flyFrames, timePerFrame: 0.14)
         self.flyAnimation = SKAction.repeatForever(flyAction)
     }
     
-    func onTap() {
-        
-    }
+    override func onTap() { }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)

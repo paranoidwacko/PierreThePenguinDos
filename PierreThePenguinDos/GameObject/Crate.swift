@@ -9,23 +9,20 @@
 import Foundation
 import SpriteKit
 
-class Crate: SKSpriteNode, GameSprite {
-    var textureAtlas: SKTextureAtlas = SKTextureAtlas(named: TextureAtlasName.Environment.rawValue)
-    var initialSize: CGSize = CGSize(width: 40, height: 40)
+class Crate: GameSprite {
     var givesHeart = false
     var exploded = false
     
     init() {
-        super.init(texture: nil, color: UIColor.clear, size: initialSize)
-        self.physicsBody = SKPhysicsBody(rectangleOf: initialSize)
+        super.init(textureAtlas: SKTextureAtlas(named: TextureAtlasName.Environment.rawValue), textureName: TextureName.Crate, color: UIColor.clear, size: CGSize(width: 40, height: 40))
+        self.physicsBody = SKPhysicsBody(rectangleOf: self.size)
         self.physicsBody?.collisionBitMask = PhysicsCategory.ground.rawValue | PhysicsCategory.crate.rawValue
         self.physicsBody?.categoryBitMask = PhysicsCategory.crate.rawValue
-        self.texture = textureAtlas.textureNamed(TextureName.Crate.rawValue)
     }
     
     func turnToHeartCrate() {
         self.physicsBody?.affectedByGravity = false
-        self.texture = textureAtlas.textureNamed(TextureName.CratePowerUp.rawValue)
+        self.Texture(textureName: TextureName.CratePowerUp)
         self.givesHeart = true
     }
     
@@ -56,9 +53,7 @@ class Crate: SKSpriteNode, GameSprite {
         exploded = false
     }
     
-    func onTap() {
-        
-    }
+    override func onTap() { }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)

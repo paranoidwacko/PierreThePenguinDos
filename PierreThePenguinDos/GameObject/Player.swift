@@ -9,13 +9,11 @@
 import Foundation
 import SpriteKit
 
-class Player: SKSpriteNode, GameSprite {
+class Player: GameSprite {
     fileprivate static let KEY_ANIMATION_FLAP = "flapAnimation"
     fileprivate static let KEY_ANIMATION_SOAR = "soarAnimation"
     fileprivate static let KEY_ANIMATION_STAR = "starPower"
     
-    var initialSize = CGSize(width: 64, height: 64)
-    var textureAtlas: SKTextureAtlas = SKTextureAtlas(named: TextureAtlasName.Pierre.rawValue)
     var flyAnimation = SKAction()
     var soarAnimation = SKAction()
     var flapping = false
@@ -30,12 +28,13 @@ class Player: SKSpriteNode, GameSprite {
     var forwardVelocity: CGFloat = 200
     
     init() {
-        super.init(texture: nil, color: .clear, size: initialSize)
+        super.init(textureAtlas: SKTextureAtlas(named: TextureAtlasName.Pierre.rawValue), textureName: TextureName.PierreFlying3, color: .clear, size: CGSize(width: 64, height: 64))
         createAnimations()
         self.run(soarAnimation, withKey: Player.KEY_ANIMATION_SOAR)
         
-        let bodyTexture = textureAtlas.textureNamed(TextureName.PierreFlying3.rawValue)
-        self.physicsBody = SKPhysicsBody(texture: bodyTexture, size: self.size)
+        if let texture = self.texture {
+            self.physicsBody = SKPhysicsBody(texture: texture, size: self.size)
+        }
         self.physicsBody?.linearDamping = 0.9
         self.physicsBody?.mass = 30
         self.physicsBody?.allowsRotation = false
@@ -61,20 +60,13 @@ class Player: SKSpriteNode, GameSprite {
         let rotateDownAction = SKAction.rotate(byAngle: -1, duration: 0.8)
         rotateDownAction.timingMode = .easeIn
         
-        let flyFrames: [SKTexture] = [
-            textureAtlas.textureNamed(TextureName.PierreFlying1.rawValue),
-            textureAtlas.textureNamed(TextureName.PierreFlying2.rawValue),
-            textureAtlas.textureNamed(TextureName.PierreFlying3.rawValue),
-            textureAtlas.textureNamed(TextureName.PierreFlying4.rawValue),
-            textureAtlas.textureNamed(TextureName.PierreFlying3.rawValue),
-            textureAtlas.textureNamed(TextureName.PierreFlying2.rawValue)
-        ]
+        let flyFrames: [SKTexture] = self.Textures(textureNames: [TextureName.PierreFlying1, TextureName.PierreFlying2, TextureName.PierreFlying3, TextureName.PierreFlying4, TextureName.PierreFlying3, TextureName.PierreFlying2])
         let flyAction = SKAction.animate(with: flyFrames, timePerFrame: 0.03)
-        flyAnimation = SKAction.group([SKAction.repeatForever(flyAction)])//, rotateUpAction])
+        flyAnimation = SKAction.group([SKAction.repeatForever(flyAction)])
         
-        let soarFrames: [SKTexture] = [textureAtlas.textureNamed(TextureName.PierreFlying1.rawValue)]
+        let soarFrames: [SKTexture] = self.Textures(textureNames: [TextureName.PierreFlying1])
         let soarAction = SKAction.animate(with: soarFrames, timePerFrame: 1)
-        soarAnimation = SKAction.group([SKAction.repeatForever(soarAction)])//, rotateDownAction])
+        soarAnimation = SKAction.group([SKAction.repeatForever(soarAction)])
         
         let damageStart = SKAction.run {
             self.physicsBody?.categoryBitMask = PhysicsCategory.damagedPenguin.rawValue
@@ -103,7 +95,7 @@ class Player: SKSpriteNode, GameSprite {
             ])
 
         let startDie = SKAction.run {
-            self.texture = self.textureAtlas.textureNamed(TextureName.PierreDead.rawValue)
+            self.Texture(textureName: TextureName.PierreDead)
             self.physicsBody?.affectedByGravity = false
             self.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
         }
@@ -118,10 +110,6 @@ class Player: SKSpriteNode, GameSprite {
             SKAction.wait(forDuration: 0.5),
             endDie
             ])
-    }
-    
-    func onTap() {
-        
     }
     
     func update() {
@@ -202,6 +190,8 @@ class Player: SKSpriteNode, GameSprite {
             self.run(audioAction)
         }
     }
+    
+    override func onTap() { }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)

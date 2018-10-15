@@ -9,13 +9,11 @@
 import Foundation
 import SpriteKit
 
-class Bat: SKSpriteNode, GameSprite {
-    var textureAtlas: SKTextureAtlas = SKTextureAtlas(named: TextureAtlasName.Enemies.rawValue)
-    var initialSize: CGSize = CGSize(width: 44, height: 24)
+class Bat: GameSprite {
     var flyAnimation = SKAction()
     
     init() {
-        super.init(texture: nil, color: .clear, size: self.initialSize)
+        super.init(textureAtlas: SKTextureAtlas(named: TextureAtlasName.Enemies.rawValue), textureName: nil, color: .clear, size: CGSize(width: 44, height: 24))
         self.physicsBody = SKPhysicsBody(circleOfRadius: size.width / 2)
         self.physicsBody?.affectedByGravity = false
         self.createAnimations()
@@ -26,15 +24,12 @@ class Bat: SKSpriteNode, GameSprite {
     }
     
     func createAnimations() {
-        let flyFrames: [SKTexture] = [
-            textureAtlas.textureNamed(TextureName.Bat.rawValue),
-            textureAtlas.textureNamed(TextureName.BatFly.rawValue)
-        ]
+        let flyFrames: [SKTexture] = self.Textures(textureNames: [TextureName.Bat, TextureName.BatFly])
         let flyAction = SKAction.animate(with: flyFrames, timePerFrame: 0.12)
         self.flyAnimation = SKAction.repeatForever(flyAction)
     }
     
-    func onTap() {
+    override func onTap() {
         
     }
     

@@ -9,29 +9,23 @@
 import Foundation
 import SpriteKit
 
-class Coin: SKSpriteNode, GameSprite {
-    var textureAtlas: SKTextureAtlas = SKTextureAtlas(named: TextureAtlasName.Environment.rawValue)
-    var initialSize: CGSize = CGSize(width: 26, height: 26)
+class Coin: GameSprite {
     var value = 1
     
     init() {
-        let bronzeTexture = textureAtlas.textureNamed(TextureName.CoinBronze.rawValue)
-        super.init(texture: bronzeTexture, color: .clear, size: self.initialSize)
+        super.init(textureAtlas: SKTextureAtlas(named: TextureAtlasName.Environment.rawValue), textureName: TextureName.CoinBronze, color: .clear, size: CGSize(width: 26, height: 26))
         self.physicsBody = SKPhysicsBody(circleOfRadius: size.width / 2)
         self.physicsBody?.affectedByGravity = false
-        
         self.physicsBody?.categoryBitMask = PhysicsCategory.coin.rawValue
         self.physicsBody?.collisionBitMask = 0
     }
     
     func turnToGold() {
-        self.texture = self.textureAtlas.textureNamed(TextureName.CoinGold.rawValue)
+        self.Texture(textureName: TextureName.CoinGold)
         self.value = 5
     }
     
-    func onTap() {
-        
-    }
+    override func onTap() { }
     
     func collect() {
         self.physicsBody?.categoryBitMask = 0

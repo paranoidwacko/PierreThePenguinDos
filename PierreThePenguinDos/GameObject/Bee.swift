@@ -9,33 +9,26 @@
 import Foundation
 import SpriteKit
 
-class Bee: SKSpriteNode, GameSprite {
-    var textureAtlas: SKTextureAtlas = SKTextureAtlas(named: TextureAtlasName.Enemies.rawValue)
-    var initialSize: CGSize = CGSize(width: 28, height: 24)
+class Bee: GameSprite {
     var flyAnimation = SKAction()
     
     init() {
-        super.init(texture: nil, color: .clear, size: initialSize)
+        super.init(textureAtlas: SKTextureAtlas(named: TextureAtlasName.Enemies.rawValue), textureName: nil, color: .clear, size: CGSize(width: 28, height: 24))
         createAnimations()
         self.run(flyAnimation)
         self.physicsBody = SKPhysicsBody(circleOfRadius: size.width / 2)
         self.physicsBody?.affectedByGravity = false
-        
         self.physicsBody?.categoryBitMask = PhysicsCategory.enemy.rawValue
         self.physicsBody?.collisionBitMask = ~PhysicsCategory.damagedPenguin.rawValue
-        
     }
     
     func createAnimations() {
-        let flyFrames: [SKTexture] = [
-            textureAtlas.textureNamed(TextureName.Bee.rawValue),
-            textureAtlas.textureNamed(TextureName.BeeFly.rawValue)
-        ]
+        let flyFrames: [SKTexture] = self.Textures(textureNames: [TextureName.Bee, TextureName.BeeFly])
         let flyAction = SKAction.animate(with: flyFrames, timePerFrame: 0.14)
         flyAnimation = SKAction.repeatForever(flyAction)
     }
     
-    func onTap() { }
+    override func onTap() { }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
