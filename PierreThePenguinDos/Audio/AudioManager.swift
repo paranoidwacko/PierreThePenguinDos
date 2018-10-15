@@ -10,11 +10,11 @@ import SpriteKit
 import GameKit
 
 class AudioManager {
-    fileprivate static let pInstace: AudioManager = AudioManager()
+    fileprivate static let pInstance: AudioManager = AudioManager()
     fileprivate var audios: [AudioName: SKAction]
     fileprivate var backgroundMusicPlayer: AVAudioPlayer?
     
-    init() {
+    fileprivate init() {
         self.audios = [AudioName: SKAction]()
         self.audios[AudioName.Coin]      = SKAction.playSoundFileNamed(AudioName.Coin.rawValue, waitForCompletion: false)
         self.audios[AudioName.GameStart] = SKAction.playSoundFileNamed(AudioName.GameStart.rawValue, waitForCompletion: false)
@@ -32,11 +32,11 @@ class AudioManager {
     }
     
     public static func AudioAction(of name: AudioName) -> SKAction? {
-        return pInstace.audios[name]
+        return pInstance.audios[name]
     }
     
     public static func PlayBackground() {
-        pInstace.backgroundMusicPlayer?.play()
+        pInstance.backgroundMusicPlayer?.play()
     }
     
 }

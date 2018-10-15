@@ -9,7 +9,7 @@
 import Foundation
 
 enum FontName: String {
-    case AvenirNext = "AvenirNext"
+    case AvenirNext = "Avenir Next"
     case AvenirNextHeavy = "AvenirNext-Heavy"
     case AvenirNextHeavyItalic = "AvenirNext-HeavyItalic"
 }

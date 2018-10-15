@@ -13,8 +13,8 @@ class Blade: GameSprite {
     var spinAnimation = SKAction()
     
     init() {
-        super.init(textureAtlas: SKTextureAtlas(named: TextureAtlasName.Enemies.rawValue), textureName: TextureName.Blade, color: .clear, size: CGSize(width: 185, height: 92))
-        if let texture = self.texture {
+        super.init(texture: nil, color: .clear, size: CGSize(width: 185, height: 92))
+        if let texture = TextureManager.Texture(textureName: TextureName.Blade) {
             self.physicsBody = SKPhysicsBody(texture: texture, size: self.size)
         }
         self.physicsBody?.affectedByGravity = false
@@ -26,9 +26,10 @@ class Blade: GameSprite {
     }
     
     func createAnimations() {
-        let spinFrames: [SKTexture] = self.Textures(textureNames: [TextureName.Blade, TextureName.Blade2])
-        let spinAction = SKAction.animate(with: spinFrames, timePerFrame: 0.07)
-        self.spinAnimation = SKAction.repeatForever(spinAction)
+        if let txtBlade = TextureManager.Texture(textureName: TextureName.Blade), let txtBlade2 = TextureManager.Texture(textureName: TextureName.Blade2) {
+            let spinAction = SKAction.animate(with: [txtBlade, txtBlade2], timePerFrame: 0.07)
+            self.spinAnimation = SKAction.repeatForever(spinAction)
+        }
     }
     
     override func onTap() { }

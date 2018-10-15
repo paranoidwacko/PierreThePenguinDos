@@ -13,7 +13,7 @@ class MadFly: GameSprite {
     var flyAnimation = SKAction()
     
     init() {
-        super.init(textureAtlas: SKTextureAtlas(named: TextureAtlasName.Enemies.rawValue), textureName: nil, color: .clear, size: CGSize(width: 61, height: 29))
+        super.init(texture: nil, color: .clear, size: CGSize(width: 61, height: 29))
         self.physicsBody = SKPhysicsBody(circleOfRadius: size.width / 2)
         self.physicsBody?.affectedByGravity = false
         createAnimations()
@@ -24,9 +24,11 @@ class MadFly: GameSprite {
     }
     
     func createAnimations() {
-        let flyFrames: [SKTexture] = self.Textures(textureNames: [TextureName.MadFly, TextureName.MadFlyFly])
-        let flyAction = SKAction.animate(with: flyFrames, timePerFrame: 0.14)
-        self.flyAnimation = SKAction.repeatForever(flyAction)
+        if let txtMadFly = TextureManager.Texture(textureName: TextureName.MadFly), let txtMadFlyFly = TextureManager.Texture(textureName: TextureName.MadFlyFly) {
+            let flyAction = SKAction.animate(with: [txtMadFly, txtMadFlyFly], timePerFrame: 0.14)
+            self.flyAnimation = SKAction.repeatForever(flyAction)
+        }
+        
     }
     
     override func onTap() { }

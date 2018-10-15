@@ -14,12 +14,12 @@ class Ground: GameSprite {
     var jumpCount = CGFloat(1)
     
     init() {
-        super.init(textureAtlas: SKTextureAtlas(named: TextureAtlasName.Environment.rawValue), textureName: nil, color: UIColor.clear, size: CGSize.zero)
+        super.init(texture: nil, color: UIColor.clear, size: CGSize.zero)
     }
     
     func createChildren() {
         self.anchorPoint = CGPoint(x: 0, y: 1)
-        self.Texture(textureName: TextureName.Ground)
+        self.texture = TextureManager.Texture(textureName: TextureName.Ground)
         var tileCount: CGFloat = 0
         let tileSize = CGSize(width: 35, height: 300)
         while tileCount * tileSize.width < self.size.width {

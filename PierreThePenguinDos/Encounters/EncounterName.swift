@@ -12,4 +12,6 @@ enum EncounterName: String {
     case EncounterA = "EncounterA"
     case EncounterB = "EncounterB"
     case EncounterC = "EncounterC"
+    
+//    case EncounterTest = "EncounterTest"
 }

@@ -13,12 +13,11 @@ class Star: GameSprite {
     var pulseAnimation = SKAction()
     
     init() {
-        super.init(textureAtlas: SKTextureAtlas(named: TextureAtlasName.Environment.rawValue), textureName: TextureName.Star, color: .clear, size: CGSize(width: 40, height: 38))
+        super.init(texture: TextureManager.Texture(textureName: TextureName.Star), color: .clear, size: CGSize(width: 40, height: 38))
         self.physicsBody = SKPhysicsBody(circleOfRadius: size.width / 2)
         self.physicsBody?.affectedByGravity = false
         createAnimations()
         self.run(self.pulseAnimation)
-        
         self.physicsBody?.categoryBitMask = PhysicsCategory.powerup.rawValue
     }
     

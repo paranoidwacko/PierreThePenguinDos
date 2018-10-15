@@ -28,7 +28,7 @@ class Player: GameSprite {
     var forwardVelocity: CGFloat = 200
     
     init() {
-        super.init(textureAtlas: SKTextureAtlas(named: TextureAtlasName.Pierre.rawValue), textureName: TextureName.PierreFlying3, color: .clear, size: CGSize(width: 64, height: 64))
+        super.init(texture: TextureManager.Texture(textureName: TextureName.PierreFlying3), color: .clear, size: CGSize(width: 64, height: 64))
         createAnimations()
         self.run(soarAnimation, withKey: Player.KEY_ANIMATION_SOAR)
         
@@ -60,13 +60,16 @@ class Player: GameSprite {
         let rotateDownAction = SKAction.rotate(byAngle: -1, duration: 0.8)
         rotateDownAction.timingMode = .easeIn
         
-        let flyFrames: [SKTexture] = self.Textures(textureNames: [TextureName.PierreFlying1, TextureName.PierreFlying2, TextureName.PierreFlying3, TextureName.PierreFlying4, TextureName.PierreFlying3, TextureName.PierreFlying2])
-        let flyAction = SKAction.animate(with: flyFrames, timePerFrame: 0.03)
-        flyAnimation = SKAction.group([SKAction.repeatForever(flyAction)])
-        
-        let soarFrames: [SKTexture] = self.Textures(textureNames: [TextureName.PierreFlying1])
-        let soarAction = SKAction.animate(with: soarFrames, timePerFrame: 1)
-        soarAnimation = SKAction.group([SKAction.repeatForever(soarAction)])
+        if let txtPierre1 = TextureManager.Texture(textureName: TextureName.PierreFlying1),
+           let txtPierre2 = TextureManager.Texture(textureName: TextureName.PierreFlying2),
+           let txtPierre3 = TextureManager.Texture(textureName: TextureName.PierreFlying3),
+           let txtPierre4 = TextureManager.Texture(textureName: TextureName.PierreFlying4) {
+            let flyAction = SKAction.animate(with: [txtPierre1, txtPierre2, txtPierre3, txtPierre4, txtPierre3, txtPierre2], timePerFrame: 0.03)
+            flyAnimation = SKAction.group([SKAction.repeatForever(flyAction)])
+            
+            let soarAction = SKAction.animate(with: [txtPierre1], timePerFrame: 1)
+            soarAnimation = SKAction.group([SKAction.repeatForever(soarAction)])
+        }
         
         let damageStart = SKAction.run {
             self.physicsBody?.categoryBitMask = PhysicsCategory.damagedPenguin.rawValue
@@ -95,7 +98,7 @@ class Player: GameSprite {
             ])
 
         let startDie = SKAction.run {
-            self.Texture(textureName: TextureName.PierreDead)
+            self.texture = TextureManager.Texture(textureName: TextureName.PierreDead)
             self.physicsBody?.affectedByGravity = false
             self.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
         }

@@ -60,9 +60,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         for _ in 0..<3 {
             backgrounds.append(Background())
         }
-        backgrounds[0].spawn(parentNode: self, imageName: TextureName.BackgroundFront.rawValue, zPosition: -5, movementMultiplier: 0.75)
-        backgrounds[1].spawn(parentNode: self, imageName: TextureName.BackgroundMiddle.rawValue, zPosition: -10, movementMultiplier: 0.5)
-        backgrounds[2].spawn(parentNode: self, imageName: TextureName.BackgroundBack.rawValue, zPosition: -15, movementMultiplier: 0.2)
+        backgrounds[0].spawn(parentNode: self, textureName: TextureName.BackgroundFront, zPosition: -5, movementMultiplier: 0.75)
+        backgrounds[1].spawn(parentNode: self, textureName: TextureName.BackgroundMiddle, zPosition: -10, movementMultiplier: 0.5)
+        backgrounds[2].spawn(parentNode: self, textureName: TextureName.BackgroundBack, zPosition: -15, movementMultiplier: 0.2)
         
         if let dotEmitter = SKEmitterNode(fileNamed: ParticleName.PierrePath.rawValue) {
             player.zPosition = 10
@@ -127,7 +127,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
     }
     
+    var lastUpdateTime: TimeInterval = 0
     override func update(_ currentTime: TimeInterval) {
+        let deltaTime = currentTime - lastUpdateTime
+        let currentFPS = 1 / deltaTime
+        print(currentFPS)
+        lastUpdateTime = currentTime
+        
         player.update()
     }
     

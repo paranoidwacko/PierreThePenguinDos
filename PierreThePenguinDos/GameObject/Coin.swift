@@ -13,7 +13,7 @@ class Coin: GameSprite {
     var value = 1
     
     init() {
-        super.init(textureAtlas: SKTextureAtlas(named: TextureAtlasName.Environment.rawValue), textureName: TextureName.CoinBronze, color: .clear, size: CGSize(width: 26, height: 26))
+        super.init(texture: TextureManager.Texture(textureName: TextureName.CoinBronze), color: .clear, size: CGSize(width: 26, height: 26))
         self.physicsBody = SKPhysicsBody(circleOfRadius: size.width / 2)
         self.physicsBody?.affectedByGravity = false
         self.physicsBody?.categoryBitMask = PhysicsCategory.coin.rawValue
@@ -21,7 +21,7 @@ class Coin: GameSprite {
     }
     
     func turnToGold() {
-        self.Texture(textureName: TextureName.CoinGold)
+        self.texture = TextureManager.Texture(textureName: TextureName.CoinGold)
         self.value = 5
     }
     

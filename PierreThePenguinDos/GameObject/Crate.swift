@@ -14,7 +14,7 @@ class Crate: GameSprite {
     var exploded = false
     
     init() {
-        super.init(textureAtlas: SKTextureAtlas(named: TextureAtlasName.Environment.rawValue), textureName: TextureName.Crate, color: UIColor.clear, size: CGSize(width: 40, height: 40))
+        super.init(texture: TextureManager.Texture(textureName: TextureName.Crate), color: UIColor.clear, size: CGSize(width: 40, height: 40))
         self.physicsBody = SKPhysicsBody(rectangleOf: self.size)
         self.physicsBody?.collisionBitMask = PhysicsCategory.ground.rawValue | PhysicsCategory.crate.rawValue
         self.physicsBody?.categoryBitMask = PhysicsCategory.crate.rawValue
@@ -22,7 +22,7 @@ class Crate: GameSprite {
     
     func turnToHeartCrate() {
         self.physicsBody?.affectedByGravity = false
-        self.Texture(textureName: TextureName.CratePowerUp)
+        self.texture = TextureManager.Texture(textureName: TextureName.CratePowerUp)
         self.givesHeart = true
     }
     
