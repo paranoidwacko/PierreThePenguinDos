@@ -18,8 +18,6 @@ class MenuScene: SKScene, GKGameCenterControllerDelegate {
     fileprivate static let TEXT_MENU_BUTTON_LEADERBOARD = NSLocalizedString("menu_button_leaderboard", comment: "")
     fileprivate static let TEXT_MENU_BUTTON_START = NSLocalizedString("menu_button_start", comment: "")
     
-    
-    let textureAtlas: SKTextureAtlas = SKTextureAtlas(named: TextureAtlasName.HUD.rawValue)
     let startButton = SKSpriteNode()
     
     override func didMove(to view: SKView) {
@@ -40,7 +38,7 @@ class MenuScene: SKScene, GKGameCenterControllerDelegate {
         logoTextBottom.fontSize = 40
         self.addChild(logoTextBottom)
         
-        startButton.texture = textureAtlas.textureNamed(TextureName.Button.rawValue)
+        startButton.texture = TextureManager.Texture(textureName: TextureName.Button)
         startButton.size = CGSize(width: 295, height: 76)
         startButton.name = MenuScene.KEY_BUTTON_START
         startButton.position = CGPoint(x: 0, y: -20)

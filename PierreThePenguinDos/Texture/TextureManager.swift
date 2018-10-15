@@ -26,7 +26,7 @@ class TextureManager {
     }
     
     fileprivate func initializeTextures() {
-        self.intializeTextures(textureAtlas: SKTextureAtlas(named: TextureAtlasName.Enemies.rawValue), textureNames: [
+        self.initializeTextures(textureAtlas: SKTextureAtlas(named: TextureAtlasName.Enemies.rawValue), textureNames: [
             TextureName.Bat,
             TextureName.BatFly,
             TextureName.Bee,
@@ -36,7 +36,7 @@ class TextureManager {
             TextureName.MadFly,
             TextureName.MadFlyFly
             ])
-        self.intializeTextures(textureAtlas: SKTextureAtlas(named: TextureAtlasName.Environment.rawValue), textureNames: [
+        self.initializeTextures(textureAtlas: SKTextureAtlas(named: TextureAtlasName.Environment.rawValue), textureNames: [
             TextureName.CoinBronze,
             TextureName.CoinGold,
             TextureName.Crate,
@@ -44,21 +44,27 @@ class TextureManager {
             TextureName.Ground,
             TextureName.Star
             ])
-        self.intializeTextures(textureAtlas: SKTextureAtlas(named: TextureAtlasName.Pierre.rawValue), textureNames: [
+        self.initializeTextures(textureAtlas: SKTextureAtlas(named: TextureAtlasName.Pierre.rawValue), textureNames: [
             TextureName.PierreFlying1,
             TextureName.PierreFlying2,
             TextureName.PierreFlying3,
             TextureName.PierreFlying4,
             TextureName.PierreDead
             ])
-        self.intializeTextures(textureAtlas: SKTextureAtlas(named: TextureAtlasName.Background.rawValue), textureNames: [
+        self.initializeTextures(textureAtlas: SKTextureAtlas(named: TextureAtlasName.Background.rawValue), textureNames: [
             TextureName.BackgroundFront,
             TextureName.BackgroundMiddle,
             TextureName.BackgroundBack
             ])
+        self.initializeTextures(textureAtlas: SKTextureAtlas(named: TextureAtlasName.HUD.rawValue), textureNames: [
+            TextureName.HeartFull,
+            TextureName.Button,
+            TextureName.ButtonRestart,
+            TextureName.ButtonMenu
+            ])
     }
     
-    fileprivate func intializeTextures(textureAtlas: SKTextureAtlas, textureNames: [TextureName]) {
+    fileprivate func initializeTextures(textureAtlas: SKTextureAtlas, textureNames: [TextureName]) {
         for textureName in textureNames {
             self.textures[textureName] = textureAtlas.textureNamed(textureName.rawValue)
         }

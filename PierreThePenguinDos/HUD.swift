@@ -14,8 +14,6 @@ class HUD: SKNode {
     public static let NAME_BUTTON_RESTART: String = "restartGame"
     fileprivate static let TEXT_INITIAL_COIN_COUNT: String = "000000"
     
-    var textureAtlas = SKTextureAtlas(named: TextureAtlasName.HUD.rawValue)
-    var coinAtlas = SKTextureAtlas(named: TextureAtlasName.Environment.rawValue)
     var heartNodes: [SKSpriteNode] = []
     let coinCountText = SKLabelNode(text: HUD.TEXT_INITIAL_COIN_COUNT)
     let restartButton = SKSpriteNode()
@@ -23,7 +21,7 @@ class HUD: SKNode {
     
     func createHUDNodes(screenSize: CGSize) {
         let cameraOrigin = CGPoint(x: screenSize.width / 2, y: screenSize.height / 2)
-        let coinIcon = SKSpriteNode(texture: coinAtlas.textureNamed(TextureName.CoinBronze.rawValue))
+        let coinIcon = SKSpriteNode(texture: TextureManager.Texture(textureName: TextureName.CoinBronze))
         let coinPosition = CGPoint(x: -cameraOrigin.x + 23, y: cameraOrigin.y - 23)
         coinIcon.size = CGSize(width: 26, height: 26)
         coinIcon.position = coinPosition
@@ -35,7 +33,7 @@ class HUD: SKNode {
         self.addChild(coinCountText)
         self.addChild(coinIcon)
         for index in 0..<3 {
-            let newHeartNode = SKSpriteNode(texture: textureAtlas.textureNamed(TextureName.HeartFull.rawValue))
+            let newHeartNode = SKSpriteNode(texture: TextureManager.Texture(textureName: TextureName.HeartFull))
             newHeartNode.size = CGSize(width: 46, height: 40)
             let xPos = -cameraOrigin.x + CGFloat(index * 58) + 33
             let yPos = cameraOrigin.y - 66
@@ -44,8 +42,8 @@ class HUD: SKNode {
             self.addChild(newHeartNode)
         }
         
-        restartButton.texture = textureAtlas.textureNamed(TextureName.ButtonRestart.rawValue)
-        menuButton.texture = textureAtlas.textureNamed(TextureName.ButtonMenu.rawValue)
+        restartButton.texture = TextureManager.Texture(textureName: TextureName.ButtonRestart)
+        menuButton.texture = TextureManager.Texture(textureName: TextureName.ButtonMenu)
         restartButton.name = HUD.NAME_BUTTON_RESTART
         menuButton.name = HUD.NAME_BUTTON_MENU
         menuButton.position = CGPoint(x: -140, y: 0)
