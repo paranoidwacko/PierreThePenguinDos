@@ -10,8 +10,8 @@ import Foundation
 import SpriteKit
 
 class Ground: GameSprite {
-    var jumpWidth = CGFloat()
-    var jumpCount = CGFloat(1)
+    fileprivate var jumpWidth = CGFloat()
+    fileprivate var jumpCount = CGFloat(1)
     
     init() {
         super.init(texture: nil, color: UIColor.clear, size: CGSize.zero)

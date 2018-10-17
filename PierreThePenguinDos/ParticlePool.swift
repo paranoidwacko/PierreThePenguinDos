@@ -26,7 +26,7 @@ class ParticlePool {
             }
         }
         
-        for i in 1...1 {
+        for i in 1...5 {
             if let heart = SKEmitterNode(fileNamed: ParticleName.HeartExplosion.rawValue) {
                 heart.position = CGPoint(x: -2000, y: -2000)
                 heart.zPosition = CGFloat(45 - i)
