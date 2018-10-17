@@ -35,10 +35,7 @@ class Crate: GameSprite {
         self.run(SKAction.fadeAlpha(to: 0, duration: 0.1))
         
         if (givesHeart) {
-            let newHealth = gameScene.player.health + 1
-            let maxHealth = gameScene.player.maxHealth
-            gameScene.player.health = newHealth > maxHealth ? maxHealth : newHealth
-            gameScene.hud.setHealthDisplay(newHealth: gameScene.player.health)
+            gameScene.hud.setHealthDisplay(newHealth: gameScene.player.AddHealth())
             gameScene.particlePool.placeEmitter(node: self, emitterType: EmitterType.Heart.rawValue)
         } else {
             gameScene.coinsCollected += 25

@@ -10,14 +10,16 @@ import Foundation
 import SpriteKit
 
 class HUD: SKNode {
-    public static let NAME_BUTTON_MENU: String = "returnToMenu"
-    public static let NAME_BUTTON_RESTART: String = "restartGame"
+    fileprivate static let NAME_BUTTON_MENU: String = "returnToMenu"
+    fileprivate static let NAME_BUTTON_RESTART: String = "restartGame"
     fileprivate static let TEXT_INITIAL_COIN_COUNT: String = "000000"
     
-    var heartNodes: [SKSpriteNode] = []
-    let coinCountText = SKLabelNode(text: HUD.TEXT_INITIAL_COIN_COUNT)
-    let restartButton = SKSpriteNode()
-    let menuButton = SKSpriteNode()
+    fileprivate var heartNodes: [SKSpriteNode] = []
+    fileprivate let coinCountText = SKLabelNode(text: HUD.TEXT_INITIAL_COIN_COUNT)
+    fileprivate let restartButton = SKSpriteNode()
+    fileprivate let menuButton = SKSpriteNode()
+    
+    weak var delegate: HUDDelegate?
     
     func createHUDNodes(screenSize: CGSize) {
         let cameraOrigin = CGPoint(x: screenSize.width / 2, y: screenSize.height / 2)
@@ -80,4 +82,19 @@ class HUD: SKNode {
         restartButton.run(fadeAnimation)
         menuButton.run(fadeAnimation)
     }
+    
+    func HandleTapEvent(nodeName: String?) {
+        if let nodeName = nodeName {
+            if nodeName == HUD.NAME_BUTTON_RESTART {
+                self.delegate?.RestartGame()
+            } else if nodeName == HUD.NAME_BUTTON_MENU {
+                self.delegate?.MainMenu()
+            }
+        }
+    }
+}
+
+protocol HUDDelegate: NSObjectProtocol {
+    func RestartGame()
+    func MainMenu()
 }
