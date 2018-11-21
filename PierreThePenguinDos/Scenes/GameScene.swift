@@ -140,27 +140,33 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     override func update(_ currentTime: TimeInterval) {
         let deltaTime = currentTime - lastUpdateTime
         let currentFPS = 1 / deltaTime
-        print(currentFPS)
+//        print(currentFPS)
         lastUpdateTime = currentTime
         
         player.update()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for touch in touches {
-            let location = touch.location(in: self)
-            let nodeTouched = atPoint(location)
-//            if let gameSprite = nodeTouched as? GameSprite {
-//                gameSprite.onTap()
-//            }
-            self.hud.HandleTapEvent(nodeName: nodeTouched.name)
-            
-//            if (location.x < self.frame.midX) {
-                self.player.startFlapping()
-//            } else {
-//                self.player.stopFlapping()
-//            }
-            
+        if let camera = self.camera {
+            for touch in touches {
+                let absLocation = touch.location(in: self)
+                let nodeTouched = atPoint(absLocation)
+                //            if let gameSprite = nodeTouched as? GameSprite {
+                //                gameSprite.onTap()
+                //            }
+                self.hud.HandleTapEvent(nodeName: nodeTouched.name)
+                
+                let relLocation = touch.location(in: camera)
+                if (relLocation.x > 0) {
+                    // Flap
+                    self.player.startFlapping()
+                } else {
+                    // Turbo
+                    self.player.IncreaseVelocity()
+                    //self.player.stopFlapping()
+                    
+                }
+            }
         }
     }
     

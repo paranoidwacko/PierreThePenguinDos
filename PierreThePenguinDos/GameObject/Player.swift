@@ -194,6 +194,13 @@ class Player: GameSprite {
         }
     }
     
+    func IncreaseVelocity() {
+        self.forwardVelocity += 100
+        if self.forwardVelocity > 4000 {
+            self.forwardVelocity = 100
+        }
+    }
+    
     func AddHealth() -> Int {
         self.health = self.health + 1 > self.maxHealth ? self.maxHealth : self.health + 1
         return self.health
