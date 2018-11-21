@@ -14,18 +14,18 @@ class Player: GameSprite {
     fileprivate static let KEY_ANIMATION_SOAR = "soarAnimation"
     fileprivate static let KEY_ANIMATION_STAR = "starPower"
     
-    var flyAnimation = SKAction()
-    var soarAnimation = SKAction()
-    var flapping = false
-    let maxFlappingForce: CGFloat = 57000
-    let maxHeight: CGFloat = 1000
-    var health: Int = 3
-    let maxHealth = 3
-    var invulnerable = false
-    var damaged = false
-    var damageAnimation = SKAction()
-    var dieAnimation = SKAction()
-    var forwardVelocity: CGFloat = 200
+    fileprivate var flyAnimation = SKAction()
+    fileprivate var soarAnimation = SKAction()
+    fileprivate var flapping = false
+    fileprivate let maxFlappingForce: CGFloat = 57000
+    fileprivate let maxHeight: CGFloat = 1000
+    fileprivate var health: Int = 3
+    fileprivate let maxHealth = 3
+    fileprivate var invulnerable = false
+    fileprivate var damaged = false
+    fileprivate var damageAnimation = SKAction()
+    fileprivate var dieAnimation = SKAction()
+    fileprivate var forwardVelocity: CGFloat = 200
     
     init() {
         super.init(texture: TextureManager.Texture(textureName: TextureName.PierreFlying3), color: .clear, size: CGSize(width: 64, height: 64))
@@ -192,6 +192,19 @@ class Player: GameSprite {
         if let audioAction = AudioManager.AudioAction(of: AudioName.PowerUp) {
             self.run(audioAction)
         }
+    }
+    
+    func AddHealth() -> Int {
+        self.health = self.health + 1 > self.maxHealth ? self.maxHealth : self.health + 1
+        return self.health
+    }
+    
+    func Health() -> Int {
+        return self.health
+    }
+    
+    func MaxHeight() -> CGFloat {
+        return self.maxHeight
     }
     
     override func onTap() { }

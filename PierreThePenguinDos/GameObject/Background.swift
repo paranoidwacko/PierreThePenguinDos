@@ -10,9 +10,9 @@ import Foundation
 import SpriteKit
 
 class Background: SKSpriteNode {
-    var movementMultiplier = CGFloat(0)
-    var jumpAdjustment = CGFloat(0)
-    let backgroundSize = CGSize(width: 1024, height: 768)
+    fileprivate var movementMultiplier = CGFloat(0)
+    fileprivate var jumpAdjustment = CGFloat(0)
+    fileprivate let backgroundSize = CGSize(width: 1024, height: 768)
     
     func spawn(parentNode: SKNode, textureName: TextureName, zPosition: CGFloat, movementMultiplier: CGFloat) {
         self.anchorPoint = CGPoint.zero

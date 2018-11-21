@@ -114,8 +114,9 @@
 				1F4D43BF216EF0FC00BF4929 /* EncounterA.sks */,
 				844CAF5121728ADA0096894D /* EncounterB.sks */,
 				844CAF5321728AF60096894D /* EncounterC.sks */,
-				84B67D1F21744A1600442DD4 /* EncounterTest.sks */,
+				1F4D43C1216EF3B600BF4929 /* EncounterManager.swift */,
 				84B67D142173F6C300442DD4 /* EncounterName.swift */,
+				84B67D1F21744A1600442DD4 /* EncounterTest.sks */,
 			);
 			path = Encounters;
 			sourceTree = "<group>";
@@ -128,10 +129,28 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		848238062176DE0700BE4FCC /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				84B67D162173F74500442DD4 /* FontName.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		848238072176DEF200BE4FCC /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				844CAF652172F2310096894D /* MenuScene.swift */,
+				84F05C6421475BBE004AF466 /* GameScene.swift */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
 		84B67D072173DAFA00442DD4 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
 				84F05C6B21475BBE004AF466 /* Assets.xcassets */,
+				84B67D182173F9A800442DD4 /* Localizable.strings */,
 				844CAF672172F92A0096894D /* Sound */,
 			);
 			path = Resources;
@@ -140,6 +159,7 @@
 		84B67D082173DD3D00442DD4 /* GameObject */ = {
 			isa = PBXGroup;
 			children = (
+				844CAF552172A3430096894D /* PhysicsCategory.swift */,
 				844CAF592172C0EF0096894D /* Background.swift */,
 				84765036216A99BC00B205AB /* GameSprite.swift */,
 				1F4D43B7216D351A00BF4929 /* Bat.swift */,
@@ -163,6 +183,7 @@
 				844CAF5B2172C46E0096894D /* PierrePath.sks */,
 				84B67D1B2173FBD500442DD4 /* EmitterType.swift */,
 				84B67D1D2173FC5800442DD4 /* ParticleName.swift */,
+				844CAF632172D0D90096894D /* ParticlePool.swift */,
 			);
 			path = Particle;
 			sourceTree = "<group>";
@@ -208,23 +229,18 @@
 			children = (
 				84F05C7021475BBE004AF466 /* Info.plist */,
 				84F05C5E21475BBE004AF466 /* AppDelegate.swift */,
-				1F4D43C1216EF3B600BF4929 /* EncounterManager.swift */,
-				84B67D162173F74500442DD4 /* FontName.swift */,
-				84F05C6421475BBE004AF466 /* GameScene.swift */,
 				84F05C6621475BBE004AF466 /* GameViewController.swift */,
 				844CAF572172BC4E0096894D /* HUD.swift */,
-				844CAF652172F2310096894D /* MenuScene.swift */,
-				844CAF632172D0D90096894D /* ParticlePool.swift */,
-				844CAF552172A3430096894D /* PhysicsCategory.swift */,
 				84B67D112173EB4100442DD4 /* Audio */,
 				1F4D43BE216EF0A200BF4929 /* Encounters */,
 				84B67D082173DD3D00442DD4 /* GameObject */,
 				84F05C6D21475BBE004AF466 /* LaunchScreen.storyboard */,
-				84B67D182173F9A800442DD4 /* Localizable.strings */,
 				84F05C6821475BBE004AF466 /* Main.storyboard */,
 				84B67D092173DD7F00442DD4 /* Particle */,
 				84B67D072173DAFA00442DD4 /* Resources */,
+				848238072176DEF200BE4FCC /* Scenes */,
 				84B67D0C2173E04B00442DD4 /* Texture */,
+				848238062176DE0700BE4FCC /* Utils */,
 			);
 			path = PierreThePenguinDos;
 			sourceTree = "<group>";
@@ -256,11 +272,12 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0920;
-				LastUpgradeCheck = 0920;
+				LastUpgradeCheck = 1010;
 				ORGANIZATIONNAME = ParanoidWacko;
 				TargetAttributes = {
 					84F05C5A21475BBE004AF466 = {
 						CreatedOnToolsVersion = 9.2;
+						LastSwiftMigration = 1010;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.GameCenter = {
@@ -390,6 +407,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -397,6 +415,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -447,6 +466,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -454,6 +474,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -493,7 +514,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.paranoidwacko.pierrethepenguin;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -508,7 +529,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.paranoidwacko.pierrethepenguin;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

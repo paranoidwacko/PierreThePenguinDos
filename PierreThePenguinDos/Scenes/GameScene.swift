@@ -27,8 +27,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var backgrounds: [Background] = []
     let particlePool = ParticlePool()
     let heartCrate = Crate()
+//    let heartCrate2 = Crate()
     
     override func didMove(to view: SKView) {
+        self.hud.delegate = self
+        
         self.anchorPoint = .zero
         self.backgroundColor = UIColor(red: 0.4, green: 0.6, blue: 0.95, alpha: 1.0)
         self.camera = self.cam
@@ -77,6 +80,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         heartCrate.position = CGPoint(x: -2100, y: -2100)
         heartCrate.turnToHeartCrate()
         
+//        self.addChild(self.heartCrate2)
+//        heartCrate2.position = CGPoint(x: -2200, y: -2200)
+//        heartCrate2.turnToHeartCrate()
+        
         if let audioAction = AudioManager.AudioAction(of: AudioName.GameStart) {
             self.run(audioAction)
         }
@@ -89,7 +96,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         if (player.position.y > screenCenterY) {
             cameraYPos = player.position.y
-            let percentOfMaxHeight = (player.position.y - screenCenterY) / (player.maxHeight - screenCenterY)
+            let percentOfMaxHeight = (player.position.y - screenCenterY) / (player.MaxHeight() - screenCenterY)
             let newScale = 1 + percentOfMaxHeight
             cam.yScale = newScale
             cam.xScale = newScale
@@ -120,6 +127,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 heartCrate.reset()
                 heartCrate.position = CGPoint(x: nextEncounterSpawnPosition - 600, y: 270)
             }
+//            heartCrate2.reset()
+//            heartCrate2.position = CGPoint(x: nextEncounterSpawnPosition - 800, y: 400)
         }
         
         for background in self.backgrounds {
@@ -141,17 +150,22 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         for touch in touches {
             let location = touch.location(in: self)
             let nodeTouched = atPoint(location)
-            if let gameSprite = nodeTouched as? GameSprite {
-                gameSprite.onTap()
-            }
+//            if let gameSprite = nodeTouched as? GameSprite {
+//                gameSprite.onTap()
+//            }
+            self.hud.HandleTapEvent(nodeName: nodeTouched.name)
             
-            if nodeTouched.name == HUD.NAME_BUTTON_RESTART {
-                self.view?.presentScene(GameScene(size: self.size), transition: .crossFade(withDuration: 0.6))
-            } else if nodeTouched.name == HUD.NAME_BUTTON_MENU {
-                self.view?.presentScene(MenuScene(size: self.size), transition: .crossFade(withDuration: 0.6))
-            }
+//            if (location.x < self.frame.midX) {
+                self.player.startFlapping()
+//            } else {
+//                self.player.stopFlapping()
+//            }
+            
         }
-        self.player.startFlapping()
+    }
+    
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -173,10 +187,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         switch otherBody.categoryBitMask {
         case PhysicsCategory.ground.rawValue:
             player.takeDamage()
-            hud.setHealthDisplay(newHealth: player.health)
+            hud.setHealthDisplay(newHealth: player.Health())
         case PhysicsCategory.enemy.rawValue:
             self.player.takeDamage()
-            hud.setHealthDisplay(newHealth: player.health)
+            hud.setHealthDisplay(newHealth: player.Health())
         case PhysicsCategory.coin.rawValue:
             if let coin = otherBody.node as? Coin {
                 coin.collect()
@@ -201,7 +215,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func updateLeaderboard() {
-        if GKLocalPlayer.localPlayer().isAuthenticated {
+        if GKLocalPlayer.local.isAuthenticated {
             let score = GKScore(leaderboardIdentifier: GameScene.KEY_LEADERBOARD_ID)
             score.value = Int64(self.coinsCollected)
             GKScore.report([score], withCompletionHandler: { (error: Error?) -> Void in
@@ -213,7 +227,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func checkForAchievements() {
-        if GKLocalPlayer.localPlayer().isAuthenticated {
+        if GKLocalPlayer.local.isAuthenticated {
             if self.coinsCollected >= 100 {
                 let achieve = GKAchievement(identifier: GameScene.KEY_CHALLENGE_100_COINS)
                 achieve.showsCompletionBanner = true
@@ -226,4 +240,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             }
         }
     }
+}
+
+extension GameScene: HUDDelegate {
+    func RestartGame() {
+        self.view?.presentScene(GameScene(size: self.size), transition: .crossFade(withDuration: 0.6))
+    }
+    
+    func MainMenu() {
+        self.view?.presentScene(MenuScene(size: self.size), transition: .crossFade(withDuration: 0.6))
+    }
+    
+    
 }

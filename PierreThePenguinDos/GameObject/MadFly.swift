@@ -10,7 +10,7 @@ import Foundation
 import SpriteKit
 
 class MadFly: GameSprite {
-    var flyAnimation = SKAction()
+    fileprivate var flyAnimation = SKAction()
     
     init() {
         super.init(texture: nil, color: .clear, size: CGSize(width: 61, height: 29))

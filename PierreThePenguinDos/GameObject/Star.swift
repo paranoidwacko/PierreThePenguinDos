@@ -10,7 +10,7 @@ import Foundation
 import SpriteKit
 
 class Star: GameSprite {
-    var pulseAnimation = SKAction()
+    fileprivate var pulseAnimation = SKAction()
     
     init() {
         super.init(texture: TextureManager.Texture(textureName: TextureName.Star), color: .clear, size: CGSize(width: 40, height: 38))

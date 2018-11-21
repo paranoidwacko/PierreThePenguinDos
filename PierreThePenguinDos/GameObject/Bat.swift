@@ -10,23 +10,18 @@ import Foundation
 import SpriteKit
 
 class Bat: GameSprite {
-    fileprivate var flyAnimation = SKAction()
-    
+
     init() {
         super.init(texture: nil, color: .clear, size: CGSize(width: 44, height: 24))
         self.physicsBody = SKPhysicsBody(circleOfRadius: size.width / 2)
         self.physicsBody?.affectedByGravity = false
-        self.createAnimations()
-        self.run(self.flyAnimation)
+        if let txtBat = TextureManager.Texture(textureName: TextureName.Bat), let txtBatFly = TextureManager.Texture(textureName: TextureName.BatFly) {
+            let flyAction = SKAction.animate(with: [txtBat, txtBatFly], timePerFrame: 0.1)
+            let flyAnimation = SKAction.repeatForever(flyAction)
+            self.run(flyAnimation)
+        }
         self.physicsBody?.categoryBitMask = PhysicsCategory.enemy.rawValue
         self.physicsBody?.collisionBitMask = ~PhysicsCategory.damagedPenguin.rawValue
-    }
-    
-    func createAnimations() {
-        if let txtBat = TextureManager.Texture(textureName: TextureName.Bat), let txtBatFly = TextureManager.Texture(textureName: TextureName.BatFly) {
-            let flyAction = SKAction.animate(with: [txtBat, txtBatFly], timePerFrame: 0.12)
-            self.flyAnimation = SKAction.repeatForever(flyAction)
-        }
     }
     
     override func onTap() { }
