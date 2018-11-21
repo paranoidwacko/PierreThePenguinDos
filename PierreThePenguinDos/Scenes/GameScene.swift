@@ -27,7 +27,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var backgrounds: [Background] = []
     let particlePool = ParticlePool()
     let heartCrate = Crate()
-    let heartCrate2 = Crate()
+//    let heartCrate2 = Crate()
     
     override func didMove(to view: SKView) {
         self.hud.delegate = self
@@ -80,8 +80,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         heartCrate.position = CGPoint(x: -2100, y: -2100)
         heartCrate.turnToHeartCrate()
         
-        self.addChild(self.heartCrate2)
-        heartCrate2.position = CGPoint(x: -2200, y: -2200)
+//        self.addChild(self.heartCrate2)
+//        heartCrate2.position = CGPoint(x: -2200, y: -2200)
 //        heartCrate2.turnToHeartCrate()
         
         if let audioAction = AudioManager.AudioAction(of: AudioName.GameStart) {
@@ -127,8 +127,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 heartCrate.reset()
                 heartCrate.position = CGPoint(x: nextEncounterSpawnPosition - 600, y: 270)
             }
-            heartCrate2.reset()
-            heartCrate2.position = CGPoint(x: nextEncounterSpawnPosition - 800, y: 400)
+//            heartCrate2.reset()
+//            heartCrate2.position = CGPoint(x: nextEncounterSpawnPosition - 800, y: 400)
         }
         
         for background in self.backgrounds {
