@@ -59,7 +59,7 @@ class MenuScene: SKScene, GKGameCenterControllerDelegate {
             ])
         startText.run(SKAction.repeatForever(pulseAction))
         
-        if GKLocalPlayer.localPlayer().isAuthenticated {
+        if GKLocalPlayer.local.isAuthenticated {
             self.createLeaderboardButton()
         }
     }

@@ -215,7 +215,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func updateLeaderboard() {
-        if GKLocalPlayer.localPlayer().isAuthenticated {
+        if GKLocalPlayer.local.isAuthenticated {
             let score = GKScore(leaderboardIdentifier: GameScene.KEY_LEADERBOARD_ID)
             score.value = Int64(self.coinsCollected)
             GKScore.report([score], withCompletionHandler: { (error: Error?) -> Void in
@@ -227,7 +227,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func checkForAchievements() {
-        if GKLocalPlayer.localPlayer().isAuthenticated {
+        if GKLocalPlayer.local.isAuthenticated {
             if self.coinsCollected >= 100 {
                 let achieve = GKAchievement(identifier: GameScene.KEY_CHALLENGE_100_COINS)
                 achieve.showsCompletionBanner = true

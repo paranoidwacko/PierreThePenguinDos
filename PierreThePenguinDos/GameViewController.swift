@@ -47,7 +47,7 @@ class GameViewController: UIViewController {
     }
     
     func authenticateLocalPlayer(menuScene: MenuScene) {
-        let localPlayer = GKLocalPlayer.localPlayer()
+        let localPlayer = GKLocalPlayer.local
         localPlayer.authenticateHandler = { (viewController, error) -> Void in
             if viewController != nil {
                 self.present(viewController!, animated: true, completion: nil)
