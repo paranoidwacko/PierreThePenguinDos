@@ -10,7 +10,7 @@ import Foundation
 import SpriteKit
 
 class GameSprite: SKSpriteNode {
-    fileprivate static let ERROR_METHOD_NOT_IMPLEMENTED = NSLocalizedString("method_not_implemented", comment: "")
+    fileprivate static let ERROR_METHOD_NOT_IMPLEMENTED = LocalString(key: "method_not_implemented")
 
     fileprivate let initialSize: CGSize?
     

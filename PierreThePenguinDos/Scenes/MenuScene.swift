@@ -13,10 +13,10 @@ import GameKit
 class MenuScene: SKScene, GKGameCenterControllerDelegate {
     fileprivate static let KEY_BUTTON_LEADERBOARD = "LeaderboardBtn"
     fileprivate static let KEY_BUTTON_START = "StartBtn"
-    fileprivate static let TEXT_APP_TITLE = NSLocalizedString("app_title", comment: "")
-    fileprivate static let TEXT_APP_SUBTITLE = NSLocalizedString("app_subtitle", comment: "")
-    fileprivate static let TEXT_MENU_BUTTON_LEADERBOARD = NSLocalizedString("menu_button_leaderboard", comment: "")
-    fileprivate static let TEXT_MENU_BUTTON_START = NSLocalizedString("menu_button_start", comment: "")
+    fileprivate static let TEXT_APP_TITLE = LocalString(key: "app_title")
+    fileprivate static let TEXT_APP_SUBTITLE = LocalString(key: "app_subtitle")
+    fileprivate static let TEXT_MENU_BUTTON_LEADERBOARD = LocalString(key: "menu_button_leaderboard")
+    fileprivate static let TEXT_MENU_BUTTON_START = LocalString(key: "menu_button_start")
     
     let startButton = SKSpriteNode()
     
