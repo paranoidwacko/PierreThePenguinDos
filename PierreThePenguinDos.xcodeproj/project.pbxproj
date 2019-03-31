@@ -43,6 +43,13 @@
 		84B67D2021744A1600442DD4 /* EncounterTest.sks in Resources */ = {isa = PBXBuildFile; fileRef = 84B67D1F21744A1600442DD4 /* EncounterTest.sks */; };
 		84B67D2321744CB800442DD4 /* TextureManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B67D2221744CB800442DD4 /* TextureManager.swift */; };
 		84C8B9C8225049CC0086AC58 /* StringUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C8B9C7225049CC0086AC58 /* StringUtils.swift */; };
+		84C8B9CB225057540086AC58 /* SKLabelNodeExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C8B9CA225057540086AC58 /* SKLabelNodeExt.swift */; };
+		84C8B9CD22505D780086AC58 /* SKSpriteNodeExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C8B9CC22505D780086AC58 /* SKSpriteNodeExt.swift */; };
+		84C8B9CF2250654B0086AC58 /* AnimationUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C8B9CE2250654B0086AC58 /* AnimationUtils.swift */; };
+		84C8B9D222506C5A0086AC58 /* BaseSpriteNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C8B9D122506C5A0086AC58 /* BaseSpriteNode.swift */; };
+		84C8B9D422506C640086AC58 /* BaseLabelNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C8B9D322506C640086AC58 /* BaseLabelNode.swift */; };
+		84C8B9D622506C6B0086AC58 /* BaseNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C8B9D522506C6B0086AC58 /* BaseNode.swift */; };
+		84C8B9D8225075900086AC58 /* BaseSKScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C8B9D7225075900086AC58 /* BaseSKScene.swift */; };
 		84F05C5F21475BBE004AF466 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F05C5E21475BBE004AF466 /* AppDelegate.swift */; };
 		84F05C6521475BBE004AF466 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F05C6421475BBE004AF466 /* GameScene.swift */; };
 		84F05C6721475BBE004AF466 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F05C6621475BBE004AF466 /* GameViewController.swift */; };
@@ -88,6 +95,13 @@
 		84B67D1F21744A1600442DD4 /* EncounterTest.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = EncounterTest.sks; sourceTree = "<group>"; };
 		84B67D2221744CB800442DD4 /* TextureManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextureManager.swift; sourceTree = "<group>"; };
 		84C8B9C7225049CC0086AC58 /* StringUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringUtils.swift; sourceTree = "<group>"; };
+		84C8B9CA225057540086AC58 /* SKLabelNodeExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKLabelNodeExt.swift; sourceTree = "<group>"; };
+		84C8B9CC22505D780086AC58 /* SKSpriteNodeExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKSpriteNodeExt.swift; sourceTree = "<group>"; };
+		84C8B9CE2250654B0086AC58 /* AnimationUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationUtils.swift; sourceTree = "<group>"; };
+		84C8B9D122506C5A0086AC58 /* BaseSpriteNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseSpriteNode.swift; sourceTree = "<group>"; };
+		84C8B9D322506C640086AC58 /* BaseLabelNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseLabelNode.swift; sourceTree = "<group>"; };
+		84C8B9D522506C6B0086AC58 /* BaseNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseNode.swift; sourceTree = "<group>"; };
+		84C8B9D7225075900086AC58 /* BaseSKScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseSKScene.swift; sourceTree = "<group>"; };
 		84F05C5B21475BBE004AF466 /* ParanoidPhoenix.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ParanoidPhoenix.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84F05C5E21475BBE004AF466 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		84F05C6421475BBE004AF466 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
@@ -136,6 +150,7 @@
 			children = (
 				84B67D162173F74500442DD4 /* FontName.swift */,
 				84C8B9C7225049CC0086AC58 /* StringUtils.swift */,
+				84C8B9CE2250654B0086AC58 /* AnimationUtils.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -210,6 +225,26 @@
 			path = Audio;
 			sourceTree = "<group>";
 		};
+		84C8B9C9225057430086AC58 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				84C8B9CA225057540086AC58 /* SKLabelNodeExt.swift */,
+				84C8B9CC22505D780086AC58 /* SKSpriteNodeExt.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		84C8B9D022506C460086AC58 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				84C8B9D122506C5A0086AC58 /* BaseSpriteNode.swift */,
+				84C8B9D322506C640086AC58 /* BaseLabelNode.swift */,
+				84C8B9D522506C6B0086AC58 /* BaseNode.swift */,
+				84C8B9D7225075900086AC58 /* BaseSKScene.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
 		84F05C5221475BBE004AF466 = {
 			isa = PBXGroup;
 			children = (
@@ -230,6 +265,8 @@
 		84F05C5D21475BBE004AF466 /* PierreThePenguinDos */ = {
 			isa = PBXGroup;
 			children = (
+				84C8B9D022506C460086AC58 /* Base */,
+				84C8B9C9225057430086AC58 /* Extension */,
 				84F05C7021475BBE004AF466 /* Info.plist */,
 				84F05C5E21475BBE004AF466 /* AppDelegate.swift */,
 				84F05C6621475BBE004AF466 /* GameViewController.swift */,
@@ -335,6 +372,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84C8B9CF2250654B0086AC58 /* AnimationUtils.swift in Sources */,
 				844CAF662172F2310096894D /* MenuScene.swift in Sources */,
 				8476503B216A9CCA00B205AB /* Ground.swift in Sources */,
 				84765039216A9AD400B205AB /* Bee.swift in Sources */,
@@ -343,23 +381,29 @@
 				8476503D216AA12B00B205AB /* Player.swift in Sources */,
 				84F05C6721475BBE004AF466 /* GameViewController.swift in Sources */,
 				844CAF582172BC4E0096894D /* HUD.swift in Sources */,
+				84C8B9D422506C640086AC58 /* BaseLabelNode.swift in Sources */,
+				84C8B9CB225057540086AC58 /* SKLabelNodeExt.swift in Sources */,
 				1F4D43BC216D38DB00BF4929 /* Coin.swift in Sources */,
 				84B67D0E2173E07500442DD4 /* TextureName.swift in Sources */,
+				84C8B9D222506C5A0086AC58 /* BaseSpriteNode.swift in Sources */,
 				84B67D152173F6C300442DD4 /* EncounterName.swift in Sources */,
 				84B67D132173EB5100442DD4 /* AudioName.swift in Sources */,
 				84B67D1E2173FC5800442DD4 /* ParticleName.swift in Sources */,
 				84F05C5F21475BBE004AF466 /* AppDelegate.swift in Sources */,
 				84C8B9C8225049CC0086AC58 /* StringUtils.swift in Sources */,
 				1F4D43B8216D351A00BF4929 /* Bat.swift in Sources */,
+				84C8B9D622506C6B0086AC58 /* BaseNode.swift in Sources */,
 				84B67D1C2173FBD500442DD4 /* EmitterType.swift in Sources */,
 				1F4D43BA216D36A800BF4929 /* Blade.swift in Sources */,
 				84B67D172173F74500442DD4 /* FontName.swift in Sources */,
+				84C8B9CD22505D780086AC58 /* SKSpriteNodeExt.swift in Sources */,
 				844CAF5A2172C0EF0096894D /* Background.swift in Sources */,
 				1F4D43B6216D323900BF4929 /* MadFly.swift in Sources */,
 				1F4D43C2216EF3B600BF4929 /* EncounterManager.swift in Sources */,
 				844CAF5E2172CE860096894D /* Crate.swift in Sources */,
 				1F4D43B4216D2BEB00BF4929 /* Star.swift in Sources */,
 				84B67D2321744CB800442DD4 /* TextureManager.swift in Sources */,
+				84C8B9D8225075900086AC58 /* BaseSKScene.swift in Sources */,
 				844CAF562172A3430096894D /* PhysicsCategory.swift in Sources */,
 				84B67D0B2173E02E00442DD4 /* TextureAtlasName.swift in Sources */,
 				84B67D102173EA3C00442DD4 /* AudioManager.swift in Sources */,
