@@ -1,12 +1,10 @@
-/* 
-  Localizable.strings
-  PierreThePenguinDos
-
-  Created by Sparrow on 10/14/18.
-  Copyright © 2018 ParanoidWacko. All rights reserved.
-*/
-app_subtitle = "Escapes the Antarctic";
-app_title = "Pierre Penguin";
+/**
+ Strings specific to the English language
+ - author: Wacko
+ - date: 10/14/2018
+ */
+app_subtitle = "Trusts no one";
+app_title = "Paranoid Phoenix";
 
 menu_button_leaderboard = "Leaderboard";
 menu_button_start = "START GAME";
