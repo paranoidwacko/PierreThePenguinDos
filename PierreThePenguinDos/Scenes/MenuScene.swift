@@ -1,87 +1,60 @@
-//
-//  MenuScene.swift
-//  PierreThePenguinDos
-//
-//  Created by Sparrow on 10/13/18.
-//  Copyright © 2018 ParanoidWacko. All rights reserved.
-//
-
 import Foundation
 import SpriteKit
 import GameKit
 
-class MenuScene: SKScene, GKGameCenterControllerDelegate {
-    fileprivate static let KEY_BUTTON_LEADERBOARD = "LeaderboardBtn"
-    fileprivate static let KEY_BUTTON_START = "StartBtn"
-    fileprivate static let TEXT_APP_TITLE = LocalString(key: "app_title")
-    fileprivate static let TEXT_APP_SUBTITLE = LocalString(key: "app_subtitle")
-    fileprivate static let TEXT_MENU_BUTTON_LEADERBOARD = LocalString(key: "menu_button_leaderboard")
-    fileprivate static let TEXT_MENU_BUTTON_START = LocalString(key: "menu_button_start")
+/**
+ Scene to represent the menu options at the start of the game
+ - author: Wacko
+ - date: 10/13/2018
+ */
+class MenuScene: BaseScene, GKGameCenterControllerDelegate {
+    private static let KEY_BUTTON_LEADERBOARD = "LeaderboardBtn"
+    private static let KEY_BUTTON_START = "StartBtn"
+    private static let TEXT_APP_TITLE = LocalString(key: "app_title")
+    private static let TEXT_APP_SUBTITLE = LocalString(key: "app_subtitle")
+    private static let TEXT_MENU_BUTTON_LEADERBOARD = LocalString(key: "menu_button_leaderboard")
+    private static let TEXT_MENU_BUTTON_START = LocalString(key: "menu_button_start")
     
-    let startButton = SKSpriteNode()
+    private let backgroundImage: BaseSpriteNode
+    private let logoText: BaseLabelNode
+    private let logoTextBottom: BaseLabelNode
+    private let startButton: BaseSpriteNode
+    private let startText: BaseLabelNode
+    
+    override init(size: CGSize) {
+        self.backgroundImage = BaseSpriteNode(imageNamed: TextureName.BackgroundMenu.rawValue, size: CGSize(width: 1024, height: 768), zPosition: -1)
+        self.logoText = BaseLabelNode(fontNamed: FontName.AvenirNextHeavy.rawValue, text: MenuScene.TEXT_APP_TITLE, position: CGPoint(x: 0, y: 100), fontSize: 60)
+        self.logoTextBottom = BaseLabelNode(fontNamed: FontName.AvenirNextHeavy.rawValue, text: MenuScene.TEXT_APP_SUBTITLE, position: CGPoint(x: 0, y: 50), fontSize: 40)
+        self.startButton = BaseSpriteNode(name: MenuScene.KEY_BUTTON_START, position: CGPoint(x: 0, y: -20), size: CGSize(width: 295, height: 76), texture: TextureManager.Texture(textureName: TextureName.Button))
+        self.startText = BaseLabelNode(fontNamed: FontName.AvenirNextHeavyItalic.rawValue, text: MenuScene.TEXT_MENU_BUTTON_START, position: CGPoint(x: 0, y: 2), fontSize: 40, name: MenuScene.KEY_BUTTON_START, verticalAlignmentMode: .center, zPosition: 5)
+        super.init(size: size)
+    }
     
     override func didMove(to view: SKView) {
         self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
-        let backgroundImage = SKSpriteNode(imageNamed: TextureName.BackgroundMenu.rawValue)
-        backgroundImage.size = CGSize(width: 1024, height: 768)
-        backgroundImage.zPosition = -1
+        self.startText.onTouch = { [weak self] in
+            if let myself = self {
+                myself.view?.presentScene(GameScene(size: myself.size))
+            }
+        }
+        
         self.addChild(backgroundImage)
-        
-        let logoText = SKLabelNode(fontNamed: FontName.AvenirNextHeavy.rawValue)
-        logoText.text = MenuScene.TEXT_APP_TITLE
-        logoText.position = CGPoint(x: 0, y: 100)
-        logoText.fontSize = 60
         self.addChild(logoText)
-        let logoTextBottom = SKLabelNode(fontNamed: FontName.AvenirNextHeavy.rawValue)
-        logoTextBottom.text = MenuScene.TEXT_APP_SUBTITLE
-        logoTextBottom.position = CGPoint(x: 0, y: 50)
-        logoTextBottom.fontSize = 40
         self.addChild(logoTextBottom)
+        self.addChild(self.startButton)
+        self.startButton.addChild(startText)
         
-        startButton.texture = TextureManager.Texture(textureName: TextureName.Button)
-        startButton.size = CGSize(width: 295, height: 76)
-        startButton.name = MenuScene.KEY_BUTTON_START
-        startButton.position = CGPoint(x: 0, y: -20)
-        self.addChild(startButton)
-        
-        let startText = SKLabelNode(fontNamed: FontName.AvenirNextHeavyItalic.rawValue)
-        startText.text = MenuScene.TEXT_MENU_BUTTON_START
-        startText.verticalAlignmentMode = .center
-        startText.position = CGPoint(x: 0, y: 2)
-        startText.fontSize = 40
-        startText.name = MenuScene.KEY_BUTTON_START
-        startText.zPosition = 5
-        startButton.addChild(startText)
-        
-        let pulseAction = SKAction.sequence([
-            SKAction.fadeAlpha(to: 0.5, duration: 0.9),
-            SKAction.fadeAlpha(to: 1, duration: 0.9)
-            ])
-        startText.run(SKAction.repeatForever(pulseAction))
-        
+        self.startText.run(SKAction.repeatForever(FadeAnimation()))
         if GKLocalPlayer.local.isAuthenticated {
             self.createLeaderboardButton()
         }
     }
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for touch in touches {
-            let location = touch.location(in: self)
-            let nodeTouched = atPoint(location)
-            if nodeTouched.name == MenuScene.KEY_BUTTON_START {
-                self.view?.presentScene(GameScene(size: self.size))
-            } else if nodeTouched.name == MenuScene.KEY_BUTTON_LEADERBOARD {
-                showLeaderboard()
-            }
-        }
-    }
-    
     func createLeaderboardButton() {
-        let leaderboardText = SKLabelNode(fontNamed: FontName.AvenirNext.rawValue)
-        leaderboardText.text = MenuScene.TEXT_MENU_BUTTON_LEADERBOARD
-        leaderboardText.name = MenuScene.KEY_BUTTON_LEADERBOARD
-        leaderboardText.position = CGPoint(x: 0, y: -100)
-        leaderboardText.fontSize = 20
+        let leaderboardText = BaseLabelNode(fontNamed: FontName.AvenirNext.rawValue, text: MenuScene.TEXT_MENU_BUTTON_LEADERBOARD, position: CGPoint(x: 0, y: -100), fontSize: 20, name: MenuScene.KEY_BUTTON_LEADERBOARD)
+        leaderboardText.onTouch = { [weak self] in
+            self?.showLeaderboard()
+        }
         self.addChild(leaderboardText)
     }
     
@@ -97,5 +70,9 @@ class MenuScene: SKScene, GKGameCenterControllerDelegate {
     
     func gameCenterViewControllerDidFinish(_ gameCenterViewController: GKGameCenterViewController) {
         gameCenterViewController.dismiss(animated: true, completion: nil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 }

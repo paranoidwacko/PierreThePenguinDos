@@ -18,7 +18,7 @@ class GameViewController: UIViewController {
 
         AudioManager.PlayBackground()
         
-        let menuScene = MenuScene()
+        let menuScene = MenuScene(size: CGSize.zero)
         if let skView = self.view as? SKView {
             skView.ignoresSiblingOrder = true
             menuScene.size = view.bounds.size

@@ -1,14 +1,11 @@
-//
-//  GameScene.swift
-//  PierreThePenguinDos
-//
-//  Created by Sparrow on 9/10/18.
-//  Copyright © 2018 ParanoidWacko. All rights reserved.
-//
-
 import SpriteKit
 import GameKit
 
+/**
+ Scene for the game
+ - author: Wacko
+ - date: 09/10/2018
+ */
 class GameScene: SKScene, SKPhysicsContactDelegate {
     fileprivate static let KEY_CHALLENGE_100_COINS = "100_coins"
     fileprivate static let KEY_LEADERBOARD_ID = "pierre_the_penguin_coin_count"    
@@ -33,7 +30,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.hud.delegate = self
         
         self.anchorPoint = .zero
-        self.backgroundColor = UIColor(red: 0.4, green: 0.6, blue: 0.95, alpha: 1.0)
+        self.backgroundColor = UIColor(red: 112/255, green: 80/255, blue: 86/255, alpha: 1.0)
         self.camera = self.cam
         
         self.ground.position = CGPoint(x: -self.size.width * 2, y: 30)
